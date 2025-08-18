@@ -1,8 +1,0 @@
-/* Additional responsive tweaks (mobile-first adjustments are in style.css) */
-@media(max-width:600px){
-  .container{padding:1rem}
-  .hero h1{font-size:1.6rem}
-  .hero-media img{width:220px;height:auto}
-  .skill-categories{flex-direction:column}
-  .form-row{flex-direction:column}
-}
