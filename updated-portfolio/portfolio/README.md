@@ -36,6 +36,24 @@ git commit -m "feat: add hackathon achievements and enhanced project modal"
 git push -u origin feat/hackathon-showcase-2025
 ```
 
+Running the optional backend (local)
+----------------------------------
+
+There is a minimal Node/Express dev server under `server/` to safely expose a phone number and accept contact POSTs for local development. It is intentionally lightweight and does not persist messages.
+
+1. From the repo root, install dependencies and create an env file:
+
+```bash
+cd server
+npm install
+echo "PHONE=+91-8266891465" > .env
+npm start
+```
+
+2. Open `http://localhost:3000` and use the "Show phone" button. Contact form will POST to `/api/contact`.
+
+Notes: keep `.env` out of version control (server/.gitignore added). For production, wire the contact endpoint to an email provider or webhook and store PHONE in a secure secret manager.
+
 Recommended additions:
 - minify CSS/JS for production
 - add real project pages or modals

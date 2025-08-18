@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded',function(){
   // contact form validation (front-end only)
   const form = document.getElementById('contact-form');
   if(form){
-    form.addEventListener('submit',function(e){
+    form.addEventListener('submit',async function(e){
       e.preventDefault();
       const name = form.name.value.trim();
       const email = form.email.value.trim();
@@ -40,9 +40,40 @@ document.addEventListener('DOMContentLoaded',function(){
         alert('Please complete all fields.');
         return;
       }
-      // Instruct user about backend option
-      alert('Thank you! This form is front-end only. Connect a backend or service (Formspree, Netlify) to receive messages.');
-      form.reset();
+      // POST to backend endpoint if available
+      try{
+        const res = await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,message:msg})});
+        if(res.ok){
+          alert('Thank you — your message was sent.');
+          form.reset();
+        } else {
+          alert('Received an error from the server. Please try again later.');
+        }
+      }catch(err){
+        // fallback message
+        alert('Thank you! This form is front-end only. Connect a backend or service (Formspree, Netlify) to receive messages.');
+        form.reset();
+      }
     })
   }
+
+  // Reveal phone button wiring
+  const reveal = document.getElementById('reveal-phone');
+  const reveal2 = document.getElementById('reveal-phone-2');
+  async function fetchPhone(btn){
+    btn.disabled = true;
+    try{
+      const r = await fetch('/api/phone');
+      if(!r.ok) throw new Error('no phone');
+      const j = await r.json();
+      const phoneEl = document.getElementById('phone-mask');
+      if(phoneEl) phoneEl.textContent = j.phone;
+      btn.style.display = 'none';
+    }catch(e){
+      alert('Phone not available.');
+      btn.disabled = false;
+    }
+  }
+  reveal && reveal.addEventListener('click',()=>fetchPhone(reveal));
+  reveal2 && reveal2.addEventListener('click',()=>fetchPhone(reveal2));
 });
