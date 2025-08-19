@@ -8,14 +8,38 @@
   <meta name="author" content="Ayush R David">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
   <meta property="og:title" content="Ayush R David — Computer Vision Engineer">
   <meta property="og:description" content="Portfolio of Ayush R David — Computer Vision Engineer.">
   <link rel="icon" href="images/profile/hero.svg">
 </head>
 <body>
+  <!-- Custom cursor -->
+  <div class="cursor-dot" data-cursor-dot></div>
+  <div class="cursor-outline" data-cursor-outline></div>
+  
+  <!-- Page transition overlay -->
+  <div class="page-transition"></div>
+  
+  <!-- Back to top button -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="m18 15-6-6-6 6"/>
+    </svg>
+  </button>
+  
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="#home">Ayush R David</a>
+      
+      <!-- Dark/Light mode toggle -->
+      <div class="theme-toggle-container">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+          <span class="sun-icon">☀️</span>
+          <span class="moon-icon">🌙</span>
+        </button>
+      </div>
+      
       <button id="nav-toggle" aria-label="Toggle navigation" class="hamburger">
         <span></span><span></span><span></span>
       </button>
@@ -33,50 +57,56 @@
 
   <main>
     <section id="home" class="hero">
+      <!-- Particle background -->
+      <canvas id="particle-canvas" class="particle-canvas"></canvas>
+      
       <div class="container hero-grid">
-        <div class="hero-text">
-          <h1>Ayush R David</h1>
-          <h2>Computer Vision Engineer</h2>
-          <p class="tagline">I design and implement real-time computer vision systems — from depth perception and spatial mapping to video AI pipelines using NVIDIA DeepStream and embedded platforms.</p>
-          <div class="hero-ctas">
-            <a class="btn primary" href="documents/resume.pdf" download>Download Resume</a>
-            <a class="btn ghost" href="#contact">Contact</a>
+        <div class="hero-text" data-aos="fade-up" data-aos-duration="1000">
+          <h1 class="hero-title">Ayush R David</h1>
+          <h2 class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">Computer Vision Engineer</h2>
+          <div class="hero-badge" data-aos="fade-up" data-aos-delay="300">
+            <span class="badge-text">🎯 Real-time Vision Systems</span>
+            <span class="badge-text">🤖 Deep Learning</span>
+            <span class="badge-text">🚀 Edge Computing</span>
           </div>
-          <div class="socials">
-            <a href="https://www.linkedin.com/in/ayush-david-3b33a8292/" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+          <p class="tagline" data-aos="fade-up" data-aos-delay="400">Specializing in real-time computer vision systems, from depth perception and SLAM to video analytics pipelines using NVIDIA DeepStream. Passionate about bridging the gap between cutting-edge research and production-ready solutions.</p>
+          <div class="hero-ctas" data-aos="fade-up" data-aos-delay="600">
+            <a class="btn primary hover-effect" href="documents/resume.pdf" download>Download Resume</a>
+            <a class="btn ghost hover-effect" href="#contact">Contact</a>
           </div>
-          <p class="muted"><span id="phone-mask">Phone hidden for privacy</span> • <a href="mailto:ayushr@karunya.edu.in">ayushr@karunya.edu.in</a>
+          <div class="socials" data-aos="fade-up" data-aos-delay="800">
+            <a href="https://www.linkedin.com/in/ayush-david-3b33a8292/" target="_blank" rel="noopener" class="social-link">LinkedIn</a>
+            <a href="https://github.com/" target="_blank" rel="noopener" class="social-link">GitHub</a>
+          </div>
+          <p class="muted" data-aos="fade-up" data-aos-delay="1000"><span id="phone-mask">Phone hidden for privacy</span> • <a href="mailto:ayushr@karunya.edu.in">ayushr@karunya.edu.in</a>
             <button id="reveal-phone" class="btn ghost small" style="margin-left:0.5rem;">Show phone</button>
-          </p>
-            <p class="muted"><span id="phone-mask" data-phone="">Phone hidden for privacy</span> • <a href="mailto:ayushr@karunya.edu.in">ayushr@karunya.edu.in</a>
-              <button id="reveal-phone" class="btn ghost small" style="margin-left:0.5rem;">Show phone</button>
-              <!-- To reveal a static phone number in this static branch, add the number to the span above as: data-phone="+91-XXXXXXXXXX" -->
             </p>
         </div>
-        <div class="hero-media">
-          <img src="images/profile/hero.svg" alt="Ayush headshot" loading="lazy">
+        <div class="hero-media" data-aos="fade-left" data-aos-delay="300">
+          <div class="hero-image-container">
+            <img src="images/profile/hero.svg" alt="Ayush headshot" loading="lazy" class="parallax-element">
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="about" class="about container">
+    <section id="about" class="about container" data-aos="fade-up">
       <h3>About Me</h3>
       <div class="about-grid">
-        <div class="about-text">
+        <div class="about-text" data-aos="fade-right">
           <p>I am a Computer Vision Engineer with hands-on experience building and deploying real-time vision systems. My recent work focuses on depth vision, spatial mapping, positional tracking using ZED2i and Jetson Nano, and video analytics using NVIDIA DeepStream.</p>
           <p>I enjoy turning research prototypes into production-capable pipelines, optimizing for latency and accuracy, and working end-to-end from sensor integration and simulation (CARLA/AutoWare) to containerized deployment.</p>
         </div>
-        <div class="about-photo">
+        <div class="about-photo" data-aos="fade-left">
           <img src="images/profile/about.svg" alt="Ayush at work" loading="lazy">
         </div>
       </div>
     </section>
 
-    <section id="skills" class="skills container">
+    <section id="skills" class="skills container" data-aos="fade-up">
       <h3>Skills & Technologies</h3>
       <div class="skill-categories">
-        <div class="skill-col">
+        <div class="skill-col" data-aos="fade-up" data-aos-delay="100">
           <h4>Programming</h4>
           <ul class="skill-list">
             <li>Python</li>
@@ -84,7 +114,7 @@
             <li>Java, SQL</li>
           </ul>
         </div>
-        <div class="skill-col">
+        <div class="skill-col" data-aos="fade-up" data-aos-delay="200">
           <h4>Frameworks & Libraries</h4>
           <ul class="skill-list">
             <li>PyTorch, TensorFlow, Keras</li>
@@ -92,7 +122,7 @@
             <li>Pandas, NumPy, scikit-learn</li>
           </ul>
         </div>
-        <div class="skill-col">
+        <div class="skill-col" data-aos="fade-up" data-aos-delay="300">
           <h4>Tools & Platforms</h4>
           <ul class="skill-list">
             <li>Docker, Kafka</li>
@@ -108,53 +138,53 @@
       </div>
     </section>
 
-    <section id="projects" class="projects container">
+    <section id="projects" class="projects container" data-aos="fade-up">
       <h3>Selected Projects</h3>
       <div class="project-grid">
-  <article class="project-card" data-tech="Embedded,Depth" data-title="Depth Vision, Spatial Mapping, GeoLocalization" data-repo="#" data-video="https://www.youtube.com/embed/aqz-KE-bpKQ" data-description="Positional tracking using ZED2i and Jetson Nano to enable enhanced depth perception for autonomous systems. (April 2024)">
+  <article class="project-card hover-lift" data-aos="fade-up" data-aos-delay="100" data-tech="Embedded,Depth" data-title="Depth Vision, Spatial Mapping, GeoLocalization" data-repo="#" data-video="https://www.youtube.com/embed/aqz-KE-bpKQ" data-description="Positional tracking using ZED2i and Jetson Nano to enable enhanced depth perception for autonomous systems. (April 2024)">
           <img src="images/projects/thumb1.svg" alt="Depth Vision project" loading="lazy">
           <div class="project-body">
             <h4>Depth Vision, Spatial Mapping, GeoLocalization</h4>
             <p>Positional tracking using ZED2i and Jetson Nano to enable enhanced depth perception for autonomous systems. (April 2024)</p>
             <div class="project-actions">
-              <button class="btn small" data-action="details">Details</button>
-              <a class="muted" href="#" target="_blank">GitHub</a>
+              <button class="btn small hover-effect" data-action="details">View Details</button>
+              <a class="btn small ghost" href="#" target="_blank" rel="noopener">GitHub ↗</a>
             </div>
           </div>
         </article>
 
-  <article class="project-card" data-tech="DeepStream,Retail" data-title="Retail Analytics & Anomaly Detection" data-repo="#" data-video="https://www.youtube.com/embed/aqz-KE-bpKQ" data-description="Body pose estimation, license plate recognition and anomaly detection using NVIDIA DeepStream and RTSP streams. (July–August 2024)">
+  <article class="project-card hover-lift" data-aos="fade-up" data-aos-delay="200" data-tech="DeepStream,Retail" data-title="Retail Analytics & Anomaly Detection" data-repo="#" data-video="https://www.youtube.com/embed/aqz-KE-bpKQ" data-description="Body pose estimation, license plate recognition and anomaly detection using NVIDIA DeepStream and RTSP streams. (July–August 2024)">
           <img src="images/projects/thumb2.svg" alt="Retail analytics" loading="lazy">
           <div class="project-body">
             <h4>Retail Analytics & Anomaly Detection</h4>
             <p>Body pose estimation, license plate recognition and anomaly detection using NVIDIA DeepStream and RTSP streams. (July–August 2024)</p>
             <div class="project-actions">
-              <button class="btn small" data-action="details">Details</button>
-              <a class="muted" href="#" target="_blank">GitHub</a>
+              <button class="btn small hover-effect" data-action="details">View Details</button>
+              <a class="btn small ghost" href="#" target="_blank" rel="noopener">GitHub ↗</a>
             </div>
           </div>
         </article>
 
-  <article class="project-card" data-tech="CARLA,Autoware" data-title="HIL-Based Vehicle Control Simulation Test Bench" data-repo="#" data-video="https://www.youtube.com/embed/aqz-KE-bpKQ" data-description="In-house HIL test bench using CARLA and CAN Bus for throttle, steering and braking simulations. (November–Dec 2024)">
+  <article class="project-card hover-lift" data-aos="fade-up" data-aos-delay="300" data-tech="CARLA,Autoware" data-title="HIL-Based Vehicle Control Simulation Test Bench" data-repo="#" data-video="https://www.youtube.com/embed/aqz-KE-bpKQ" data-description="In-house HIL test bench using CARLA and CAN Bus for throttle, steering and braking simulations. (November–Dec 2024)">
           <img src="images/projects/thumb1.svg" alt="Autonomous driving test bench" loading="lazy">
           <div class="project-body">
             <h4>HIL-Based Vehicle Control Simulation Test Bench</h4>
             <p>In-house HIL test bench using CARLA and CAN Bus for throttle, steering and braking simulations. (November–Dec 2024)</p>
             <div class="project-actions">
-              <button class="btn small" data-action="details">Details</button>
-              <a class="muted" href="#" target="_blank">GitHub</a>
+              <button class="btn small hover-effect" data-action="details">View Details</button>
+              <a class="btn small ghost" href="#" target="_blank" rel="noopener">GitHub ↗</a>
             </div>
           </div>
         </article>
 
-  <article class="project-card" data-tech="NVIDIA,Occupancy" data-title="NVIDIA Occupancy Analytics" data-repo="#" data-video="https://www.youtube.com/embed/aqz-KE-bpKQ" data-description="Real-time occupancy tracking using DeepStream, Kafka, PostgreSQL and Grafana for visualization. (Feb 2025)">
+  <article class="project-card hover-lift" data-aos="fade-up" data-aos-delay="400" data-tech="NVIDIA,Occupancy" data-title="NVIDIA Occupancy Analytics" data-repo="#" data-video="https://www.youtube.com/embed/aqz-KE-bpKQ" data-description="Real-time occupancy tracking using DeepStream, Kafka, PostgreSQL and Grafana for visualization. (Feb 2025)">
           <img src="images/projects/thumb2.svg" alt="Occupancy analytics" loading="lazy">
           <div class="project-body">
             <h4>NVIDIA Occupancy Analytics</h4>
             <p>Real-time occupancy tracking using DeepStream, Kafka, PostgreSQL and Grafana for visualization. (Feb 2025)</p>
             <div class="project-actions">
-              <button class="btn small" data-action="details">Details</button>
-              <a class="muted" href="#" target="_blank">GitHub</a>
+              <button class="btn small hover-effect" data-action="details">View Details</button>
+              <a class="btn small ghost" href="#" target="_blank" rel="noopener">GitHub ↗</a>
             </div>
           </div>
         </article>
@@ -164,7 +194,12 @@
     <!-- Project modal -->
     <div id="project-modal" class="modal" aria-hidden="true">
         <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-          <button class="modal-close" aria-label="Close">×</button>
+          <button class="modal-close" aria-label="Close">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="m18 6-12 12"/>
+              <path d="m6 6 12 12"/>
+            </svg>
+          </button>
           <div class="modal-body">
             <div style="display:flex;gap:1rem;align-items:flex-start;flex-direction:column">
               <h4 id="modal-title"></h4>
@@ -179,16 +214,19 @@
 
             <div id="modal-video" class="video-wrap" aria-hidden="true" style="margin-top:1rem"></div>
 
-            <div style="margin-top:1rem"><a id="modal-repo" class="btn small primary" href="#" target="_blank">View on GitHub</a></div>
+            <div style="margin-top:1rem;display:flex;gap:1rem;flex-wrap:wrap;">
+              <a id="modal-repo" class="btn small primary" href="#" target="_blank" rel="noopener">View on GitHub ↗</a>
+              <button class="btn small ghost" onclick="document.getElementById('project-modal').setAttribute('aria-hidden', 'true')">← Back to Projects</button>
+            </div>
           </div>
         </div>
     </div>
 
       <!-- Hackathon Achievements -->
-      <section id="hackathons" class="hackathons container">
+      <section id="hackathons" class="hackathons container" data-aos="fade-up">
         <h3>Hackathon Achievements</h3>
         <div class="hack-grid">
-          <div class="hack-card">
+          <div class="hack-card hover-lift" data-aos="fade-up" data-aos-delay="100">
             <img src="images/logos/cumta.svg" alt="Cumta logo" class="hack-logo">
             <div class="hack-body">
               <h4>Cumta Hackathon</h4>
@@ -197,7 +235,7 @@
             </div>
           </div>
 
-          <div class="hack-card">
+          <div class="hack-card hover-lift" data-aos="fade-up" data-aos-delay="200">
             <img src="images/logos/icra.svg" alt="ICRA Robo Racer logo" class="hack-logo">
             <div class="hack-body">
               <h4>Robo Racer ICRA Hackathon</h4>
@@ -206,7 +244,7 @@
             </div>
           </div>
 
-          <div class="hack-card">
+          <div class="hack-card hover-lift" data-aos="fade-up" data-aos-delay="300">
             <img src="images/logos/google-devs.svg" alt="Google Developers logo" class="hack-logo">
             <div class="hack-body">
               <h4>Google Solution Challenge 2025 — Finalist</h4>
@@ -215,7 +253,7 @@
             </div>
           </div>
 
-          <div class="hack-card">
+          <div class="hack-card hover-lift" data-aos="fade-up" data-aos-delay="400">
             <img src="images/logos/iisc.svg" alt="IISc logo" class="hack-logo">
             <div class="hack-body">
               <h4>IISc Code Bot Hackathon 2025 — Finalist</h4>
@@ -224,7 +262,7 @@
             </div>
           </div>
 
-          <div class="hack-card">
+          <div class="hack-card hover-lift" data-aos="fade-up" data-aos-delay="500">
             <img src="images/logos/isro.svg" alt="ISRO logo" class="hack-logo">
             <div class="hack-body">
               <h4>ISRO BAH 2025 — 4th place</h4>
@@ -244,10 +282,10 @@
         </div>
       </section>
 
-    <section id="experience" class="experience container">
+    <section id="experience" class="experience container" data-aos="fade-up">
       <h3>Professional Experience</h3>
       <div class="timeline">
-        <div class="timeline-item">
+        <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
           <div class="time">Present</div>
           <div class="info">
             <h4>Computer Vision Engineer Trainee — Karunya Innovation and Design Studio</h4>
@@ -255,7 +293,7 @@
           </div>
         </div>
 
-        <div class="timeline-item">
+        <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
           <div class="time">Present</div>
           <div class="info">
             <h4>Team Lead — NVIDIA Student Network, Karunya</h4>
@@ -265,48 +303,45 @@
       </div>
     </section>
 
-    <section id="education" class="education container">
+    <section id="education" class="education container" data-aos="fade-up">
       <h3>Education & Certifications</h3>
-      <ul class="edu-list">
+      <ul class="edu-list" data-aos="fade-up" data-aos-delay="100">
         <li><strong>B.Tech (CSE - AI)</strong> — Karunya Institute of Technology and Sciences, Coimbatore. CGPA: 8.77 (2023-2027)</li>
         <li>Senior Secondary (ISCE) — 86% (2021)</li>
         <li>Secondary (ISC) — 87% (2023)</li>
       </ul>
 
-      <h4>Certifications</h4>
-      <ul>
+      <h4 data-aos="fade-up" data-aos-delay="200">Certifications</h4>
+      <ul data-aos="fade-up" data-aos-delay="300">
         <li>NVIDIA: Getting Started with AI on Jetson Nano; Fundamentals of Deep Learning; Building Video AI Applications on Jetson Nano; TAO Toolkit related certs.</li>
         <li>CISCO: Programming Essentials in C and Python; Cyber Security essentials.</li>
         <li>IBM: Getting Started with Enterprise Grade AI; Getting Started with Enterprise Data Science.</li>
       </ul>
     </section>
 
-    <section id="achievements" class="achievements container">
+    <section id="achievements" class="achievements container" data-aos="fade-up">
       <h3>Leadership & Extracurricular</h3>
-      <ul>
+      <ul data-aos="fade-up" data-aos-delay="100">
         <li>AI Club (KIDS) — activities and Arduino training instructor (2023–2024)</li>
         <li>Computer Vision Trainee and NVIDIA Student Network lead — organizing trainings and projects.</li>
       </ul>
     </section>
 
-    <section id="contact" class="contact container">
+    <section id="contact" class="contact container" data-aos="fade-up">
       <h3>Contact</h3>
-      <form id="contact-form" novalidate>
+      <form id="contact-form" novalidate data-aos="fade-up" data-aos-delay="100">
         <div class="form-row">
-          <input type="text" id="name" name="name" placeholder="Your name" required>
-          <input type="email" id="email" name="email" placeholder="Your email" required>
+          <input type="text" id="name" name="name" placeholder="Your name" required class="hover-effect">
+          <input type="email" id="email" name="email" placeholder="Your email" required class="hover-effect">
         </div>
-        <textarea id="message" name="message" rows="6" placeholder="Message" required></textarea>
+        <textarea id="message" name="message" rows="6" placeholder="Message" required class="hover-effect"></textarea>
         <div class="form-row form-actions">
-          <button class="btn primary" type="submit">Send Message</button>
-          <a class="btn ghost" href="documents/resume.pdf" download>Download Resume</a>
+          <button class="btn primary hover-effect" type="submit">Send Message</button>
+          <a class="btn ghost hover-effect" href="documents/resume.pdf" download>Download Resume</a>
         </div>
         <p class="muted">Location: Coimbatore, India — <a href="mailto:ayushr@karunya.edu.in">ayushr@karunya.edu.in</a>
           <button id="reveal-phone-2" class="btn ghost small" style="margin-left:0.5rem;">Show phone</button>
         </p>
-          <p class="muted">Location: Coimbatore, India • <a href="mailto:ayushr@karunya.edu.in">ayushr@karunya.edu.in</a>
-            <button id="reveal-phone-2" class="btn ghost small" style="margin-left:0.5rem;">Show phone</button>
-          </p>
       </form>
     </section>
   </main>
@@ -319,5 +354,7 @@
 
   <script src="js/projects.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/animations.js" defer></script>
 </body>
 </html>
