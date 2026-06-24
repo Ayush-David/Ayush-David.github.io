@@ -68,7 +68,8 @@ a:focus, button:focus { outline: 2px solid var(--color-accent); outline-offset: 
 .section { padding: 5rem 0; }
 .section-inner { scroll-margin-top: 72px; }
 
-.hero { background: var(--color-bg); padding-top: 4.5rem; padding-bottom: 4.5rem; }
+.hero { position: relative; z-index: 1; background: var(--color-bg); padding-top: 80px; padding-bottom: 80px; }
+#research-vision { position: relative; z-index: 2; background: var(--color-bg); padding-top: 4rem; }
 .hero-layout { display: grid; grid-template-columns: minmax(0, 1fr) 96px; gap: 1.5rem; align-items: start; }
 .hero-copy { max-width: 720px; }
 .eyebrow { margin: 0 0 0.7rem; color: var(--color-text-body); text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.79rem; }
@@ -85,12 +86,20 @@ a:focus, button:focus { outline: 2px solid var(--color-accent); outline-offset: 
 @media (max-width: 960px) { .hero-layout { grid-template-columns: 1fr; } .hero-avatar { justify-self: start; order: -1; } }
 @media (max-width: 720px) { .section { padding: 4rem 0; } .hamburger { display: inline-flex; } .site-nav { position: absolute; top: 56px; left: 0; right: 0; display: grid; padding: 0.5rem 1rem 0.75rem; background: var(--color-surface); border-bottom: 1px solid var(--color-border); transform: scaleY(0); opacity: 0; pointer-events: none; transform-origin: top; transition: transform var(--transition-fast), opacity var(--transition-fast); } .site-nav a { padding: 0.75rem 0; border-bottom: 1px solid var(--color-border); } .nav-toggle:checked ~ .site-nav { transform: scaleY(1); opacity: 1; pointer-events: auto; } .nav-toggle:checked ~ .hamburger span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); } .nav-toggle:checked ~ .hamburger span:nth-child(2) { opacity: 0; } .nav-toggle:checked ~ .hamburger span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); } }
 
-.vision-grid, .split-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 2rem; align-items: start; }
+.split-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 2rem; align-items: start; }
 
 h2 { margin: 0 0 1rem; font-size: 1.5rem; font-weight: 600; }
 .lead { margin: 0 0 1rem; max-width: 46rem; }
-.thread-list { margin: 0; padding-left: 1.1rem; }
-.thread-list li + li { margin-top: 1rem; }
+
+/* Research Vision Styles */
+.research-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 3rem; align-items: start; }
+.research-left p { color: var(--color-text-body); font-size: 15px; line-height: 1.7; }
+.research-threads { padding-left: 1.2rem; margin: 0; display: flex; flex-direction: column; gap: 1.5rem; }
+.research-threads li { color: var(--color-text-body); font-size: 14px; line-height: 1.65; }
+.research-threads li strong { display: block; font-size: 14px; font-weight: 600; color: var(--color-text-primary); margin-bottom: 0.35rem; }
+.research-threads li p { margin: 0; color: var(--color-text-body); }
+.research-footer { margin-top: 2rem; font-size: 14px; font-style: italic; color: var(--color-text-muted); border-top: 0.5px solid var(--color-border); padding-top: 1rem; }
+@media (max-width: 700px) { .research-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
 
 .card-grid, .repo-grid { display: grid; gap: 1.25rem; }
 .card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -163,12 +172,12 @@ tbody tr:hover { background: var(--color-surface-muted); }
 .cert-carousel-wrapper { position: relative; padding: 0 2rem; }
 .cert-overflow { overflow: hidden; touch-action: pan-y; }
 .cert-track { display: flex; gap: 1rem; transition: transform var(--transition-card); will-change: transform; }
-.cert-card { flex: 0 0 280px; background: var(--color-surface); border: 0.5px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; transition: transform var(--transition-card), box-shadow var(--transition-card); }
+.cert-card { flex: 0 0 260px; background: var(--color-surface); border: 0.5px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; transition: transform var(--transition-card), box-shadow var(--transition-card); }
 .cert-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-hover); }
-.cert-card-img { width: 100%; height: 160px; object-fit: cover; display: block; background: var(--color-surface-muted); }
-.cert-card-body { padding: 14px 16px; }
+.cert-card-img { width: 100%; height: 160px; object-fit: cover; display: block; background: var(--color-surface-muted); flex-shrink: 0; }
+.cert-card-body { padding: 14px 16px; display: flex; flex-direction: column; flex: 1; }
 .cert-tag { display: inline-block; font-size: 10px; font-weight: 500; background: var(--color-surface-muted); color: var(--color-text-body); padding: 2px 8px; border-radius: var(--radius-sm); margin-bottom: 8px; }
-.cert-card-title { margin: 0; font-size: 14px; font-weight: 500; line-height: 1.4; color: var(--color-text-primary); }
+.cert-card-title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); line-height: 1.4; margin: 0; white-space: normal; overflow: visible; text-overflow: unset; word-break: break-word; }
 .cert-card-desc { margin: 4px 0 0; font-size: 12px; line-height: 1.5; color: var(--color-text-muted); }
 .cert-link { display: inline-block; margin-top: 10px; font-size: 11px; color: var(--color-accent); text-decoration: none; transition: text-decoration var(--transition-fast); }
 .cert-link:hover { text-decoration: underline; }
@@ -181,46 +190,52 @@ tbody tr:hover { background: var(--color-surface-muted); }
 .cert-dot { width: 6px; height: 6px; padding: 0; border: 0; border-radius: 50%; background: var(--color-border-strong); cursor: pointer; transition: background var(--transition-fast); }
 .cert-dot--active { background: var(--color-text-primary); }
 
-/* Hackathon carousel styles */
-.hackathon-carousel-wrapper { position: relative; padding: 0 2rem;margin-top: 1.75rem;} 
-.hackathon-overflow { overflow: hidden; touch-action: pan-y; }
-.hackathon-track { display: flex; gap: 1rem; transition: transform var(--transition-card); will-change: transform; }
-.hackathon-card { flex: 0 0 280px; background: var(--color-surface); border: 0.5px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; transition: transform var(--transition-card), box-shadow var(--transition-card); padding: 1.25rem; }
-.hackathon-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-hover); }
-.hackathon-card-content { display: flex; flex-direction: column; gap: 0.75rem; }
-.hackathon-title { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.4; color: var(--color-text-primary); }
-.hackathon-badge { display: inline-block; font-size: 10px; font-weight: 500; padding: 3px 8px; border-radius: var(--radius-sm); width: fit-content; }
-.hackathon-badge-gold { background: #fef3c7; color: #92400e; }
-.hackathon-badge-blue { background: var(--color-badge-blue-bg); color: var(--color-badge-blue-text); }
-.hackathon-badge-green { background: var(--color-badge-green-bg); color: var(--color-badge-green-text); }
-.hackathon-meta { margin: 0; font-size: 12px; color: var(--color-text-body); line-height: 1.5; }
-.hackathon-desc { margin: 0; font-size: 11px; color: var(--color-text-muted); line-height: 1.5; }
-.hackathon-nav-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; padding: 0; border: 0.5px solid var(--color-border); border-radius: 50%; background: var(--color-surface); color: var(--color-text-primary); font-size: 20px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; z-index: 2; transition: background var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast); }
-.hackathon-nav-btn:hover:not(:disabled) { background: var(--color-surface-muted); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-.hackathon-nav-btn:disabled { opacity: 0.3; cursor: default; }
-.hackathon-prev { left: -18px; }
-.hackathon-next { right: -18px; }
-.hackathon-dots { display: flex; justify-content: center; gap: 6px; margin-top: 20px; flex-wrap: wrap; }
-.hackathon-dot { width: 6px; height: 6px; padding: 0; border: 0; border-radius: 50%; background: var(--color-border-strong); cursor: pointer; transition: background var(--transition-fast); }
-.hackathon-dot--active { background: var(--color-text-primary); }
-.timeline {
-  margin-bottom: 2.5rem; /* 👈 Forces the carousel below to respect a 40px boundary */
+/* Hackathon table styles */
+.hackathon-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 2rem;
+  font-size: 13px;
 }
-.hackathon-heading {
-  padding: 0 2rem;       /* 👈 Matches the exact left/right alignment of your carousel */
-  margin-top: 3.5rem;    /* Spacing away from the timeline above */
-  margin-bottom: 1.5rem; /* Spacing before the cards start */
+.hackathon-table th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 6px 12px 6px 0;
+  border-bottom: 0.5px solid var(--color-border);
+}
+.hackathon-table td {
+  padding: 10px 12px 10px 0;
+  border-bottom: 0.5px solid var(--color-border);
+  color: var(--color-text-body);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.hackathon-table td strong {
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+.hackathon-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.hackathon-sub {
+  display: block;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
 }
 
 @media (max-width: 960px) {
   .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .repo-grid { grid-template-columns: 1fr; }
-  .vision-grid, .split-grid { grid-template-columns: 1fr; }
+  .split-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 899px) {
   .cert-card { flex-basis: calc(50% - 0.5rem); }
-  .hackathon-card { flex-basis: calc(50% - 0.5rem); }
 }
 
 @media (max-width: 599px) {
@@ -228,8 +243,6 @@ tbody tr:hover { background: var(--color-surface-muted); }
   .cert-carousel-wrapper { padding: 0 2.5rem; }
   .cert-card { flex-basis: 100%; }
   #experience { padding-top: 4rem; }
-  .hackathon-carousel-wrapper { padding: 0 2.5rem; }
-  .hackathon-card { flex-basis: 100%; }
 }
 
 @media (max-width: 640px) {
