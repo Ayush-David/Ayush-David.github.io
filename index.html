@@ -5,20 +5,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ayush R David · Computer Vision & Autonomous Systems Researcher</title>
+  <meta name="google-site-verification" content="c9c31cff794d064b">
   <meta name="description"
-    content="Ayush R David builds perception systems for satellite imagery, edge-deployed video intelligence, and autonomous systems.">
+    content="Ayush R David — Computer Vision researcher at ARTPARK IISc. Satellite super-resolution, edge AI, video intelligence. ISRO BAH 2025 top 4 nationally.">
+  <meta name="keywords" content="Ayush David, Ayush R David, computer vision, autonomous systems, satellite image super resolution, edge AI, NVIDIA Jetson, ARTPARK IISc, deep learning, video intelligence, portfolio">
   <meta name="author" content="Ayush R David">
   <meta property="og:title" content="Ayush R David · Computer Vision & Autonomous Systems Researcher">
   <meta property="og:description"
     content="Research-grade personal site for computer vision, edge AI, autonomous systems, and satellite imagery.">
-  <meta property="og:image" content="https://Ayush-David.github.io/images/profile/hero.png">
-  <meta property="og:url" content="https://Ayush-David.github.io/">
+  <meta property="og:image" content="https://ayush-david.github.io/images/profile/hero.png">
+  <meta property="og:url" content="https://ayush-david.github.io/">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Ayush R David · Computer Vision & Autonomous Systems Researcher">
   <meta name="twitter:description"
     content="Building real-time perception systems for satellite imagery, video intelligence, and autonomous systems.">
-  <link rel="canonical" href="https://Ayush-David.github.io/">
+  <meta name="twitter:image" content="https://ayush-david.github.io/images/profile/hero.png">
+  <link rel="canonical" href="https://ayush-david.github.io/">
+  <link rel="me" href="https://github.com/Ayush-David">
+  <link rel="me" href="https://www.linkedin.com/in/ayush-david/">
   <meta name="theme-color" content="#fafafa">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -228,6 +233,13 @@
       letter-spacing: -0.03em;
     }
 
+    .hero-role {
+      font-size: clamp(18px, 3vw, 24px);
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin: 0.25rem 0 1rem;
+    }
+
     .hero-bio,
     .lead {
       color: var(--text-secondary);
@@ -341,6 +353,51 @@
     <link rel="stylesheet" href="css/style.css">
   </noscript>
   <link rel="icon" href="images/profile/hero.svg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ayush R David",
+    "alternateName": "Ayush David",
+    "url": "https://ayush-david.github.io/",
+    "email": "ayushr@karunya.edu.in",
+    "image": "https://ayush-david.github.io/images/profile/hero.png",
+    "jobTitle": "Research Intern — Computer Vision & Intelligent Systems",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "ARTPARK @ IISc",
+      "url": "https://artpark.in"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Karunya Institute of Technology and Sciences",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Coimbatore",
+        "addressCountry": "IN"
+      }
+    },
+    "knowsAbout": [
+      "Computer Vision",
+      "Deep Learning",
+      "Edge AI",
+      "Satellite Image Super-Resolution",
+      "Autonomous Systems",
+      "NVIDIA Jetson",
+      "Real-Time Video Analytics",
+      "Sensor Fusion"
+    ],
+    "sameAs": [
+      "https://github.com/Ayush-David",
+      "https://www.linkedin.com/in/ayush-david/"
+    ],
+    "description": "Computer Vision and Autonomous Systems researcher building perception systems for satellite imagery, video intelligence, and edge-deployed autonomous platforms. Research intern at ARTPARK @ IISc, Bengaluru.",
+    "award": [
+      "ISRO BAH 2025 — 4th Place Nationally",
+      "Smart India Hackathon 2025 — National Finalist (ISRO Track)"
+    ]
+  }
+  </script>
 </head>
 
 <body>
@@ -366,8 +423,8 @@
     <section id="hero" class="section hero">
       <div class="section-inner hero-layout">
         <div class="hero-copy">
-          <p class="eyebrow">Ayush R David</p>
-          <h1>Computer Vision &amp; Autonomous Systems Researcher</h1>
+          <h1>Ayush R David</h1>
+          <p class="hero-role">Computer Vision &amp; Autonomous Systems Researcher</p>
           <p class="hero-bio">Mapping pixels to physical reality. I build perception architectures that enforce causal
             reasoning, respect physical priors, and survive strict edge-compute constraints.</p>
 
@@ -377,7 +434,7 @@
           </div>
           <p class="hero-affiliation">Research Intern · ARTPARK @ IISc, Bengaluru</p>
         </div>
-        <img class="hero-avatar" src="images/profile/hero.png" alt="Ayush R David" width="96" height="96">
+        <img class="hero-avatar" src="images/profile/hero.png" alt="Ayush R David" width="96" height="96" loading="eager" decoding="async">
       </div>
     </section>
 
@@ -433,8 +490,11 @@
         <h2>Selected Work</h2>
         <div class="card-grid project-grid">
           <article class="card project-card">
-            <img src="images/projects/satellite-sr.png" alt="Satellite super-resolution comparison thumbnail"
-              loading="lazy" width="180" height="120">
+            <picture>
+              <source srcset="images/projects/satellite-sr.webp" type="image/webp">
+              <img src="images/projects/satellite-sr.png" alt="Satellite super-resolution comparison thumbnail"
+                loading="lazy" width="560" height="320" decoding="async">
+            </picture>
             <div class="card-body">
               <h3>Dual Image Super-Resolution for Satellite Imagery</h3>
               <p>Fuse two low-resolution captures into a single 512×512 high-resolution satellite image with integrated
@@ -457,8 +517,11 @@
           </article>
 
           <article class="card project-card">
-            <img src="images/projects/thermal-sr.png" alt="Thermal super-resolution gradient thumbnail" loading="lazy"
-              width="180" height="120">
+            <picture>
+              <source srcset="images/projects/thermal-sr.webp" type="image/webp">
+              <img src="images/projects/thermal-sr.png" alt="Thermal super-resolution gradient thumbnail"
+                loading="lazy" width="560" height="320" decoding="async">
+            </picture>
             <div class="card-body">
               <h3>Optical-Guided Thermal Super-Resolution</h3>
               <p>Physics-constrained, self-supervised thermal SR framework using causal optical guidance - trained
@@ -482,8 +545,11 @@
           </article>
 
           <article class="card project-card">
-            <img src="images/projects/video-intel.png" alt="Video intelligence pipeline thumbnail" loading="lazy"
-              width="180" height="120">
+            <picture>
+              <source srcset="images/projects/video-intel.webp" type="image/webp">
+              <img src="images/projects/video-intel.png" alt="Video intelligence pipeline thumbnail"
+                loading="lazy" width="560" height="320" decoding="async">
+            </picture>
             <div class="card-body">
               <h3>Manufacturing Intelligence & Video Analytics (ARTPARK @ IISc)</h3>
               <p>Industry 5.0 platform combining RTSP camera streams and manufacturing datasets (SPI, Reflow) into a
@@ -597,7 +663,10 @@
           <article class="timeline-item">
             <h3>Research Intern — Computer Vision &amp; Intelligent Systems</h3>
             <p class="timeline-meta">ARTPARK @ IISc · Bengaluru · Jan 2026 – Present</p>
-            <p>I built a data-driven intelligence layer for Industry 5.0 manufacturing. A microservice architecture ingests RTSP streams and equipment telemetry like SPI and Reflow. I process this data using YOLO and VLMs. The outputs go into a time-series and vector backend. Operators query the live factory state via an embedded AI Copilot.</p>
+            <p>I built a data-driven intelligence layer for Industry 5.0 manufacturing. A microservice architecture
+              ingests RTSP streams and equipment telemetry like SPI and Reflow. I process this data using YOLO and VLMs.
+              The outputs go into a time-series and vector backend. Operators query the live factory state via an
+              embedded AI Copilot.</p>
           </article>
           <article class="timeline-item">
             <h3>Computer Vision Engineer Trainee</h3>
@@ -683,8 +752,11 @@
           <div class="cert-overflow">
             <div class="cert-track">
               <article class="cert-card">
-                <img class="cert-card-img" src="images/certs/nvidia-dl-fundamentals.png"
-                  alt="NVIDIA DLI Fundamentals of Deep Learning certificate" loading="lazy">
+                <picture>
+                  <source srcset="images/certs/fundamentals-DL.webp" type="image/webp">
+                  <img class="cert-card-img" src="images/certs/fundamentals-DL.png"
+                    alt="NVIDIA DLI Fundamentals of Deep Learning certificate" loading="lazy" width="560" height="320" decoding="async">
+                </picture>
                 <div class="cert-card-body">
                   <span class="cert-tag">Certification</span>
                   <p class="cert-card-title">Fundamentals of Deep Learning</p>
@@ -695,8 +767,11 @@
               </article>
 
               <article class="cert-card">
-                <img class="cert-card-img" src="images/certs/nvidia-jetson-ai.png"
-                  alt="NVIDIA DLI Getting Started with AI on Jetson Nano certificate" loading="lazy">
+                <picture>
+                  <source srcset="images/certs/Jetson-AI.webp" type="image/webp">
+                  <img class="cert-card-img" src="images/certs/Jetson-AI.png"
+                    alt="NVIDIA DLI Getting Started with AI on Jetson Nano certificate" loading="lazy" width="560" height="320" decoding="async">
+                </picture>
                 <div class="cert-card-body">
                   <span class="cert-tag">Certification</span>
                   <p class="cert-card-title">Getting Started with AI on Jetson Nano</p>
@@ -707,20 +782,26 @@
               </article>
 
               <article class="cert-card">
-                <img class="cert-card-img" src="images/certs/nvidia-video-ai.png"
-                  alt="NVIDIA DLI Building Video AI Applications on Jetson Nano certificate" loading="lazy">
+                <picture>
+                  <source srcset="images/certs/IBM-AI.webp" type="image/webp">
+                  <img class="cert-card-img" src="images/certs/IBM-AI.png"
+                    alt="IBM Getting started with Enterprise grade AI certificate" loading="lazy" width="560" height="320" decoding="async">
+                </picture>
                 <div class="cert-card-body">
                   <span class="cert-tag">Certification</span>
-                  <p class="cert-card-title">Building Video AI Applications on Jetson Nano</p>
-                  <p class="cert-card-desc">NVIDIA Deep Learning Institute</p>
+                  <p class="cert-card-title">Getting started with Enterprise grade AI</p>
+                  <p class="cert-card-desc"> IBM </p>
                   <a class="cert-link" href="https://www.linkedin.com/in/ayush-david/details/certifications/"
                     target="_blank" rel="noopener noreferrer">View ↗</a>
                 </div>
               </article>
 
               <article class="cert-card">
-                <img class="cert-card-img" src="images/certs/nvidia-nlp-transformers.png"
-                  alt="NVIDIA DLI Building Transformer Based NLP Applications certificate" loading="lazy">
+                <picture>
+                  <source srcset="images/certs/transformer-based-nlp.webp" type="image/webp">
+                  <img class="cert-card-img" src="images/certs/transformer-based-nlp.png"
+                    alt="NVIDIA DLI Building Transformer Based NLP Applications certificate" loading="lazy" width="560" height="320" decoding="async">
+                </picture>
                 <div class="cert-card-body">
                   <span class="cert-tag">Certification</span>
                   <p class="cert-card-title">Transformer-Based NLP Applications</p>
@@ -731,8 +812,11 @@
               </article>
 
               <article class="cert-card">
-                <img class="cert-card-img" src="images/certs/nvidia-cuda-python.png"
-                  alt="NVIDIA DLI Accelerated Computing with CUDA Python certificate" loading="lazy">
+                <picture>
+                  <source srcset="images/certs/cuda-python.webp" type="image/webp">
+                  <img class="cert-card-img" src="images/certs/cuda-python.png"
+                    alt="NVIDIA DLI Accelerated Computing with CUDA Python certificate" loading="lazy" width="560" height="320" decoding="async">
+                </picture>
                 <div class="cert-card-body">
                   <span class="cert-tag">Certification</span>
                   <p class="cert-card-title">Accelerated Computing with CUDA Python</p>
@@ -743,8 +827,11 @@
               </article>
 
               <article class="cert-card">
-                <img class="cert-card-img" src="images/certs/nvidia-cuda-cpp.png"
-                  alt="NVIDIA DLI Accelerated Computing with CUDA C and C plus plus certificate" loading="lazy">
+                <picture>
+                  <source srcset="images/certs/CUDA-C.webp" type="image/webp">
+                  <img class="cert-card-img" src="images/certs/CUDA-C.png"
+                    alt="NVIDIA DLI Accelerated Computing with CUDA C and C plus plus certificate" loading="lazy" width="560" height="320" decoding="async">
+                </picture>
                 <div class="cert-card-body">
                   <span class="cert-tag">Certification</span>
                   <p class="cert-card-title">Accelerated Computing with CUDA C/C++</p>
@@ -755,8 +842,11 @@
               </article>
 
               <article class="cert-card">
-                <img class="cert-card-img" src="images/certs/nvidia-predictive-maintenance.png"
-                  alt="NVIDIA DLI Applications of AI for Predictive Maintenance certificate" loading="lazy">
+                <picture>
+                  <source srcset="images/certs/ai-pm.webp" type="image/webp">
+                  <img class="cert-card-img" src="images/certs/ai-pm.png"
+                    alt="NVIDIA DLI Applications of AI for Predictive Maintenance certificate" loading="lazy" width="560" height="320" decoding="async">
+                </picture>
                 <div class="cert-card-body">
                   <span class="cert-tag">Certification</span>
                   <p class="cert-card-title">AI for Predictive Maintenance</p>
@@ -778,8 +868,11 @@
         <h2>Contact</h2>
         <p>Ayush R David · <a href="mailto:ayushr@karunya.edu.in">ayushr@karunya.edu.in</a></p>
         <p><a href="https://github.com/Ayush-David">github.com/Ayush-David</a> · <a
-            href="https://www.linkedin.com/in/ayush-david">linkedin.com/in/ayush-david</a></p>
+            href="https://www.linkedin.com/in/ayush-david/">linkedin.com/in/ayush-david</a></p>
         <p>Open to research collaborations, internships, and full-time roles in computer vision and autonomous systems.
+        </p>
+        <p style="margin-top: 0.75rem;">
+          <a href="https://www.linkedin.com/in/ayush-david/">Follow my work on LinkedIn ↗</a>
         </p>
       </div>
     </section>

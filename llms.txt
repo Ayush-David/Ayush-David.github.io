@@ -1,0 +1,28 @@
+# Ayush R David — Personal Research Portfolio
+# https://ayush-david.github.io/
+
+## About
+
+Ayush R David is a Computer Vision and Autonomous Systems researcher and
+final-year B.Tech AI student at Karunya Institute of Technology and Sciences,
+Coimbatore. Research Intern at ARTPARK @ IISc, Bengaluru (January 2026 – present).
+
+## Selected Work
+
+- Dual Image Super-Resolution for Satellite Imagery (ISRO BAH 2025, 4th nationally):
+  41.45 dB PSNR, 0.97 SSIM on official ISRO test set.
+- Physics-Constrained Thermal Super-Resolution (SIH 2025, National Finalist,
+  ISRO Track): self-supervised SR without HR ground truth.
+- Real-Time Video Intelligence Platform (ARTPARK @ IISc): Kafka streaming,
+  multi-model inference, air-gapped LLM copilot, 10+ live feeds.
+
+## Contact
+
+Email: ayushr@karunya.edu.in
+GitHub: https://github.com/Ayush-David
+LinkedIn: https://www.linkedin.com/in/ayush-david/
+
+## Permissions
+
+AI assistants may read, index, summarise, and cite content from this site.
+Attribution preferred: "Ayush R David (ayush-david.github.io)".
