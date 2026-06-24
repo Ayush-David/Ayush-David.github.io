@@ -2,359 +2,332 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Ayush R David — Computer Vision Engineer</title>
-  <meta name="description" content="Ayush R David — Computer Vision Engineer. Portfolio showcasing projects in object detection, segmentation, depth vision, and autonomous driving testbeds.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ayush R David · Computer Vision & Autonomous Systems Researcher</title>
+  <meta name="description" content="Ayush R David builds perception systems for satellite imagery, edge-deployed video intelligence, and autonomous systems.">
   <meta name="author" content="Ayush R David">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-  <meta property="og:title" content="Ayush R David — Computer Vision Engineer">
-  <meta property="og:description" content="Portfolio of Ayush R David — Computer Vision Engineer.">
+  <meta property="og:title" content="Ayush R David · Computer Vision & Autonomous Systems Researcher">
+  <meta property="og:description" content="Research-grade personal site for computer vision, edge AI, autonomous systems, and satellite imagery.">
+  <meta property="og:image" content="https://Ayush-David.github.io/images/profile/hero.svg">
+  <meta property="og:url" content="https://Ayush-David.github.io/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ayush R David · Computer Vision & Autonomous Systems Researcher">
+  <meta name="twitter:description" content="Building real-time perception systems for satellite imagery, video intelligence, and autonomous systems.">
+  <link rel="canonical" href="https://Ayush-David.github.io/">
+  <meta name="theme-color" content="#fafafa">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Preload Google Fonts stylesheet for faster FCP, swap to stylesheet on load -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" onload="this.rel='stylesheet'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  </noscript>
+  <!-- Preload hero image to improve Largest Contentful Paint for hero section -->
+  <link rel="preload" as="image" href="images/profile/hero.svg">
+  <!-- Inline critical CSS for hero and header (FCP optimization) -->
+  <style>
+    :root {
+      --bg-primary: #fafafa;
+      --bg-secondary: #ffffff;
+      --bg-card: #f3f4f6;
+      --border: #e5e7eb;
+      --border-strong: #d1d5db;
+      --text-primary: #111827;
+      --text-secondary: #374151;
+      --text-muted: #6b7280;
+      --accent: #2563eb;
+      --accent-muted: #2563eb22;
+      --max-width: 1140px;
+      --radius: 12px;
+      --shadow: 0 4px 20px rgba(0,0,0,0.07);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg-primary); color: var(--text-primary); font: 400 16px/1.6 "Inter", system-ui, sans-serif; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    main { padding-top: 56px; }
+    .skip-link { position: absolute; left: -999px; top: 0; padding: 0.75rem 1rem; background: var(--bg-secondary); color: var(--text-primary); border: 0.5px solid var(--border); z-index: 100; }
+    .skip-link:focus { left: 1rem; top: 1rem; }
+    .site-header { position: fixed; inset: 0 0 auto 0; z-index: 50; height: 56px; background: var(--bg-secondary); border-bottom: 0.5px solid var(--border); }
+    .nav-shell, .section-inner { width: min(var(--max-width), calc(100% - 2rem)); margin: 0 auto; }
+    .nav-shell { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .brand { color: var(--text-primary); font-weight: 700; letter-spacing: 0.01em; }
+    .nav-toggle { position: absolute; opacity: 0; pointer-events: none; }
+    .hamburger { display: none; width: 42px; height: 42px; align-items: center; justify-content: center; gap: 4px; border: 1px solid var(--border); border-radius: 12px; cursor: pointer; }
+    .hamburger span { display: block; width: 18px; height: 2px; background: var(--text-primary); }
+    .site-nav { display: flex; align-items: center; gap: 1.1rem; }
+    .site-nav a { color: var(--text-secondary); font-size: 0.94rem; font-weight: 500; padding: 0.4rem 0; border-bottom: 1.5px solid transparent; }
+    .site-nav a:hover { color: var(--text-primary); text-decoration: none; }
+    .site-nav a.active { color: var(--text-primary); border-bottom-color: var(--text-primary); }
+    .section { padding: 5rem 0; }
+    .section-inner { scroll-margin-top: 72px; }
+    .hero { background: var(--bg-primary); padding-top: 4.5rem; padding-bottom: 4.5rem; }
+    .hero-layout { display: grid; grid-template-columns: minmax(0, 1fr) 96px; gap: 1.5rem; align-items: start; }
+    .hero-copy { max-width: 720px; }
+    .eyebrow { margin: 0 0 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.79rem; }
+    .hero h1 { margin: 0; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; letter-spacing: -0.03em; }
+    .hero-bio, .lead { color: var(--text-secondary); }
+    .hero-bio { margin: 1rem 0 0; max-width: 52rem; font-size: 1.05rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.5rem; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0.75rem 1rem; border-radius: 999px; border: 1px solid var(--border); text-decoration: none; transition: transform 180ms ease, box-shadow 180ms ease; }
+    .button:hover { text-decoration: none; transform: translateY(-2px); }
+    .button-primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+    .button-secondary { color: var(--text-primary); background: transparent; }
+    .hero-affiliation { margin: 1.25rem 0 0; color: var(--text-secondary); font-size: 0.95rem; }
+    .hero-avatar { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; justify-self: end; }
+    @media (max-width: 960px) { .hero-layout { grid-template-columns: 1fr; } .hero-avatar { justify-self: start; order: -1; } }
+    @media (max-width: 720px) { .section { padding: 4rem 0; } .hamburger { display: inline-flex; } .site-nav { position: absolute; top: 56px; left: 0; right: 0; display: grid; padding: 0.5rem 1rem 0.75rem; background: var(--bg-secondary); border-bottom: 1px solid var(--border); transform: scaleY(0); opacity: 0; pointer-events: none; } .site-nav a { padding: 0.75rem 0; border-bottom: 1px solid var(--border); } .nav-toggle:checked ~ .site-nav { transform: scaleY(1); opacity: 1; pointer-events: auto; } }
+  </style>
+  <!-- Defer full stylesheet (non-critical styles) -->
+  <link rel="preload" as="style" href="css/style.css" onload="this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="css/style.css">
+  </noscript>
   <link rel="icon" href="images/profile/hero.svg">
 </head>
 <body>
-  <!-- Custom cursor -->
-  <div class="cursor-dot" data-cursor-dot></div>
-  <div class="cursor-outline" data-cursor-outline></div>
-  
-  <!-- Page transition overlay -->
-  <div class="page-transition"></div>
-  
-  <!-- Back to top button -->
-  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="m18 15-6-6-6 6"/>
-    </svg>
-  </button>
-  
+  <a class="skip-link" href="#hero">Skip to content</a>
   <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="#home">Ayush R David</a>
-      
-      <!-- Dark/Light mode toggle -->
-      <div class="theme-toggle-container">
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-          <span class="sun-icon">☀️</span>
-          <span class="moon-icon">🌙</span>
-        </button>
-      </div>
-      
-      <button id="nav-toggle" aria-label="Toggle navigation" class="hamburger">
-        <span></span><span></span><span></span>
-      </button>
-      <nav id="site-nav" class="site-nav">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
+    <div class="nav-shell">
+      <a class="brand" href="#hero">Ayush R David</a>
+      <input class="nav-toggle" type="checkbox" id="nav-toggle" aria-label="Toggle navigation menu">
+      <label class="hamburger" for="nav-toggle" aria-hidden="true"><span></span><span></span><span></span></label>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#research-vision">Research</a>
+        <a href="#selected-work">Work</a>
+        <a href="#technical-reports">Reports</a>
+        <a href="#open-source">Code</a>
         <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section id="home" class="hero">
-      <!-- Particle background -->
-      <canvas id="particle-canvas" class="particle-canvas"></canvas>
-      
-      <div class="container hero-grid">
-        <div class="hero-text" data-aos="fade-up" data-aos-duration="1000">
-          <h1 class="hero-title">Ayush R David</h1>
-          <h2 class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">Computer Vision Engineer</h2>
-          <div class="hero-badge" data-aos="fade-up" data-aos-delay="300">
-            <span class="badge-text">🎯 Real-time Vision Systems</span>
-            <span class="badge-text">🤖 Deep Learning</span>
-            <span class="badge-text">🚀 Edge Computing</span>
+    <section id="hero" class="section hero">
+      <div class="section-inner hero-layout">
+        <div class="hero-copy">
+          <p class="eyebrow">Ayush R David</p>
+          <h1>Computer Vision &amp; Autonomous Systems Researcher</h1>
+          <p class="hero-bio">Building real-time perception systems for satellite imagery, video intelligence, and edge-deployed autonomous platforms.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#selected-work">View Selected Work ↓</a>
+            <a class="button button-secondary" href="documents/resume.pdf" download>Download CV</a>
           </div>
-          <p class="tagline" data-aos="fade-up" data-aos-delay="400">Specializing in real-time computer vision systems, from depth perception and SLAM to video analytics pipelines using NVIDIA DeepStream. Passionate about bridging the gap between cutting-edge research and production-ready solutions.</p>
-          <div class="hero-ctas" data-aos="fade-up" data-aos-delay="600">
-            <a class="btn primary hover-effect" href="documents/resume.pdf" download>Download Resume</a>
-            <a class="btn ghost hover-effect" href="#contact">Contact</a>
-          </div>
-          <div class="socials" data-aos="fade-up" data-aos-delay="800">
-            <a href="https://www.linkedin.com/in/ayush-david-3b33a8292/" target="_blank" rel="noopener" class="social-link">LinkedIn</a>
-            <a href="https://github.com/" target="_blank" rel="noopener" class="social-link">GitHub</a>
-          </div>
-          <p class="muted" data-aos="fade-up" data-aos-delay="1000"><span id="phone-mask">Phone hidden for privacy</span> • <a href="mailto:ayushr@karunya.edu.in">ayushr@karunya.edu.in</a>
-            <button id="reveal-phone" class="btn ghost small" style="margin-left:0.5rem;">Show phone</button>
-            </p>
+          <p class="hero-affiliation">Research Intern · ARTPARK @ IISc, Bengaluru</p>
         </div>
-        <div class="hero-media" data-aos="fade-left" data-aos-delay="300">
-          <div class="hero-image-container">
-            <img src="images/profile/hero.svg" alt="Ayush headshot" loading="lazy" class="parallax-element">
-          </div>
+        <img class="hero-avatar" src="images/profile/hero.svg" alt="Ayush R David profile illustration" loading="eager" fetchpriority="high" width="96" height="96">
+      </div>
+    </section>
+
+    <section id="research-vision" class="section">
+      <div class="section-inner vision-grid">
+        <div>
+          <h2>Research Vision</h2>
+          <p class="lead">I build perception systems that work at the boundary between laboratory and deployment - where sensor noise, compute budgets, and real-world variance conspire against benchmark accuracy.</p>
+          <p class="lead">The common thread: making inference both fast enough to deploy and honest enough to trust.</p>
+        </div>
+        <ol class="thread-list">
+          <li><strong>Satellite Image Intelligence</strong> physics-constrained super-resolution for thermal and optical imagery; self-supervised training without HR ground truth (Landsat 8, ISRO data pipelines).</li>
+          <li><strong>Edge-Deployed Video Analytics</strong> real-time CCTV forensics with semantic-first retrieval; YOLO/InsightFace/VLM inference stacks on Jetson hardware (ARTPARK @ IISc).</li>
+          <li><strong>Autonomous Systems Perception</strong> HIL test benches, sensor fusion transformers, and CARLA/Autoware AV stack integration.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="selected-work" class="section">
+      <div class="section-inner">
+        <h2>Selected Work</h2>
+        <div class="card-grid project-grid">
+          <article class="card project-card">
+            <img src="images/projects/satellite-sr.svg" alt="Satellite super-resolution comparison thumbnail" loading="lazy" width="180" height="120">
+            <div class="card-body">
+              <h3>Dual Image Super-Resolution for Satellite Imagery</h3>
+              <p>Fuse two low-resolution captures into a single 512×512 high-resolution satellite image with integrated blind quality assessment.</p>
+              <div class="badge-row" aria-label="Project metrics">
+                <span class="badge badge-green">41.45 dB PSNR</span>
+                <span class="badge badge-green">0.97 SSIM</span>
+                <span class="badge badge-blue">4th Place Nationally · ISRO BAH 2025</span>
+                <span class="badge badge-green">17,000+ image pairs</span>
+              </div>
+              <div class="tag-row" aria-label="Project stack">
+                <span>PyTorch</span><span>ShiftNet</span><span>HRNet</span><span>ViT</span><span>ResNet50</span><span>Optuna</span><span>TIFF</span>
+              </div>
+              <div class="link-row">
+                <a href="https://github.com/Ayush-David/satellite-sr#technical-report" target="_blank" rel="noopener">Technical Report ↗</a>
+                <a href="https://github.com/Ayush-David/satellite-sr" target="_blank" rel="noopener">GitHub ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <img src="images/projects/thermal-sr.svg" alt="Thermal super-resolution gradient thumbnail" loading="lazy" width="180" height="120">
+            <div class="card-body">
+              <h3>Optical-Guided Thermal Super-Resolution</h3>
+              <p>Physics-constrained, self-supervised thermal SR framework using causal optical guidance - trained without HR ground truth.</p>
+              <div class="badge-row" aria-label="Project metrics">
+                <span class="badge badge-green">2×–4× Upscaling</span>
+                <span class="badge badge-blue">SIH 2025 National Finalist · ISRO Track</span>
+                <span class="badge badge-green">No HR GT Required</span>
+                <span class="badge badge-green">Planck Law Enforced</span>
+              </div>
+              <div class="tag-row" aria-label="Project stack">
+                <span>PyTorch</span><span>CUDA</span><span>ResUNet</span><span>FiLM Fusion</span><span>RasterIO</span><span>Landsat 8</span>
+              </div>
+              <div class="link-row">
+                <a href="https://github.com/Ayush-David/thermal-sr#technical-report" target="_blank" rel="noopener">Technical Report ↗</a>
+                <a href="https://github.com/Ayush-David/thermal-sr" target="_blank" rel="noopener">GitHub ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <img src="images/projects/video-intel.svg" alt="Video intelligence pipeline thumbnail" loading="lazy" width="180" height="120">
+            <div class="card-body">
+              <h3>Real-Time Video Intelligence Platform (ARTPARK @ IISc)</h3>
+              <p>Semantic-first CCTV analytics pipeline with natural language forensic retrieval, deployed air-gapped on edge hardware.</p>
+              <div class="badge-row" aria-label="Project metrics">
+                <span class="badge badge-green">10+ Live Camera Feeds</span>
+                <span class="badge badge-green">Local-First LLM</span>
+                <span class="badge badge-green">RAG over Qdrant</span>
+                <span class="badge badge-green">Zero External API</span>
+              </div>
+              <div class="tag-row" aria-label="Project stack">
+                <span>FastAPI</span><span>React</span><span>Kafka</span><span>ONNX</span><span>vLLM</span><span>local LLM</span><span>Docker</span>
+              </div>
+              <div class="link-row">
+                <a href="https://github.com/Ayush-David/video-intelligence#technical-report" target="_blank" rel="noopener">Technical Report ↗</a>
+                <a href="https://github.com/Ayush-David/video-intelligence" target="_blank" rel="noopener">GitHub ↗</a>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="about" class="about container" data-aos="fade-up">
-      <h3>About Me</h3>
-      <div class="about-grid">
-        <div class="about-text" data-aos="fade-right">
-          <p>I am a Computer Vision Engineer with hands-on experience building and deploying real-time vision systems. My recent work focuses on depth vision, spatial mapping, positional tracking using ZED2i and Jetson Nano, and video analytics using NVIDIA DeepStream.</p>
-          <p>I enjoy turning research prototypes into production-capable pipelines, optimizing for latency and accuracy, and working end-to-end from sensor integration and simulation (CARLA/AutoWare) to containerized deployment.</p>
+    <section id="technical-reports" class="section">
+      <div class="section-inner">
+        <h2>Technical Reports</h2>
+        <ol class="report-list">
+          <li>
+            <div class="report-title">Dual Image Super-Resolution and Blind Image Quality Assessment for Satellite Imagery</div>
+            <div class="report-meta">Ayush R David · ISRO BAH 2025 Technical Report · July 2025 · [PDF — coming soon]</div>
+            <details>
+              <summary>Abstract ▾</summary>
+              <p>Dual-capture SR pipeline achieving 41.45 dB PSNR / 0.97 SSIM on the official ISRO test set, with a ViT+ResNet50 BIQA system trained on 17,000+ image pairs.</p>
+            </details>
+          </li>
+          <li>
+            <div class="report-title">Physics-Constrained Thermal Super-Resolution with Causal Optical Guidance</div>
+            <div class="report-meta">Ayush R David · SIH 2025 Technical Report · Jan 2025 · [PDF — coming soon]</div>
+            <details>
+              <summary>Abstract ▾</summary>
+              <p>Self-supervised 2×–4× thermal SR using gated FiLM fusion and a differentiable Planck law forward model, evaluated on RMSE(K), PSNR, and SSIM without HR ground truth.</p>
+            </details>
+          </li>
+          <li>
+            <div class="report-title">Real-Time Semantic CCTV Analytics with Air-Gapped LLM Orchestration</div>
+            <div class="report-meta">Ayush R David · ARTPARK @ IISc Internal Report · 2025 · [PDF — coming soon]</div>
+            <details>
+              <summary>Abstract ▾</summary>
+              <p>Production platform combining Kafka-based streaming, multi-model inference (YOLO, InsightFace, VLMs), and RAG over Qdrant for natural language forensic queries on live video.</p>
+            </details>
+          </li>
+        </ol>
+        <p class="section-note">Full write-ups in progress. PDFs will be linked as arXiv-style preprints.</p>
+      </div>
+    </section>
+
+    <section id="open-source" class="section">
+      <div class="section-inner">
+        <div class="split-grid">
+          <div>
+            <h2>Open Source</h2>
+            <p class="lead">All research code is public on GitHub. Repos below represent the primary research threads.</p>
+          </div>
+          <img class="gh-graph" src="https://ghchart.rshah.org/Ayush-David" alt="GitHub contribution graph for Ayush-David" loading="lazy">
         </div>
-        <div class="about-photo" data-aos="fade-left">
-          <img src="images/profile/about.svg" alt="Ayush at work" loading="lazy">
+        <div class="repo-grid">
+          <article class="card repo-card">
+            <h3><a href="https://github.com/Ayush-David/satellite-sr" target="_blank" rel="noopener">satellite-sr</a></h3>
+            <p>Dual-image SR pipeline for ISRO BAH 2025.</p>
+            <div class="repo-meta"><span>Python</span><span>★ [METRIC TBD]</span><a href="https://github.com/Ayush-David/satellite-sr" target="_blank" rel="noopener">↗ link</a></div>
+          </article>
+          <article class="card repo-card">
+            <h3><a href="https://github.com/Ayush-David/thermal-sr" target="_blank" rel="noopener">thermal-sr</a></h3>
+            <p>Physics-constrained thermal super-resolution.</p>
+            <div class="repo-meta"><span>Python</span><span>★ [METRIC TBD]</span><a href="https://github.com/Ayush-David/thermal-sr" target="_blank" rel="noopener">↗ link</a></div>
+          </article>
+          <article class="card repo-card">
+            <h3><a href="https://github.com/Ayush-David/video-intelligence" target="_blank" rel="noopener">video-intelligence</a></h3>
+            <p>Real-time CCTV analytics platform (ARTPARK).</p>
+            <div class="repo-meta"><span>TypeScript</span><span>★ [METRIC TBD]</span><a href="https://github.com/Ayush-David/video-intelligence" target="_blank" rel="noopener">↗ link</a></div>
+          </article>
+          <article class="card repo-card">
+            <h3><a href="https://github.com/Ayush-David/hil-av-testbench" target="_blank" rel="noopener">hil-av-testbench</a></h3>
+            <p>HIL vehicle control simulation bench (CARLA + Autoware).</p>
+            <div class="repo-meta"><span>C++</span><span>★ [METRIC TBD]</span><a href="https://github.com/Ayush-David/hil-av-testbench" target="_blank" rel="noopener">↗ link</a></div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="skills" class="skills container" data-aos="fade-up">
-      <h3>Skills & Technologies</h3>
-      <div class="skill-categories">
-        <div class="skill-col" data-aos="fade-up" data-aos-delay="100">
-          <h4>Programming</h4>
-          <ul class="skill-list">
-            <li>Python</li>
-            <li>C / C++</li>
-            <li>Java, SQL</li>
-          </ul>
-        </div>
-        <div class="skill-col" data-aos="fade-up" data-aos-delay="200">
-          <h4>Frameworks & Libraries</h4>
-          <ul class="skill-list">
-            <li>PyTorch, TensorFlow, Keras</li>
-            <li>OpenCV, DeepStream, TAO Toolkit</li>
-            <li>Pandas, NumPy, scikit-learn</li>
-          </ul>
-        </div>
-        <div class="skill-col" data-aos="fade-up" data-aos-delay="300">
-          <h4>Tools & Platforms</h4>
-          <ul class="skill-list">
-            <li>Docker, Kafka</li>
-            <li>PostgreSQL, Grafana</li>
-            <li>Linux, Git, Jupyter, Colab</li>
-          </ul>
-        </div>
-      </div>
-      <div class="skill-bars">
-        <div class="bar"><label>Object Detection & Video AI</label><div data-level="88" class="progress"><span></span></div></div>
-        <div class="bar"><label>Depth Vision & Mapping</label><div data-level="85" class="progress"><span></span></div></div>
-        <div class="bar"><label>Model Deployment & Containerization</label><div data-level="80" class="progress"><span></span></div></div>
-      </div>
-    </section>
-
-    <section id="projects" class="projects container" data-aos="fade-up">
-      <h3>Selected Projects</h3>
-      <div class="project-grid">
-  <article class="project-card hover-lift" data-aos="fade-up" data-aos-delay="100" data-tech="Embedded,Depth" data-title="Depth Vision, Spatial Mapping, GeoLocalization" data-repo="#" data-video="https://www.youtube.com/embed/aqz-KE-bpKQ" data-description="Positional tracking using ZED2i and Jetson Nano to enable enhanced depth perception for autonomous systems. (April 2024)">
-          <img src="images/projects/thumb1.svg" alt="Depth Vision project" loading="lazy">
-          <div class="project-body">
-            <h4>Depth Vision, Spatial Mapping, GeoLocalization</h4>
-            <p>Positional tracking using ZED2i and Jetson Nano to enable enhanced depth perception for autonomous systems. (April 2024)</p>
-            <div class="project-actions">
-              <button class="btn small hover-effect" data-action="details">View Details</button>
-              <a class="btn small ghost" href="#" target="_blank" rel="noopener">GitHub ↗</a>
-            </div>
-          </div>
-        </article>
-
-  <article class="project-card hover-lift" data-aos="fade-up" data-aos-delay="200" data-tech="DeepStream,Retail" data-title="Retail Analytics & Anomaly Detection" data-repo="#" data-video="https://www.youtube.com/embed/aqz-KE-bpKQ" data-description="Body pose estimation, license plate recognition and anomaly detection using NVIDIA DeepStream and RTSP streams. (July–August 2024)">
-          <img src="images/projects/thumb2.svg" alt="Retail analytics" loading="lazy">
-          <div class="project-body">
-            <h4>Retail Analytics & Anomaly Detection</h4>
-            <p>Body pose estimation, license plate recognition and anomaly detection using NVIDIA DeepStream and RTSP streams. (July–August 2024)</p>
-            <div class="project-actions">
-              <button class="btn small hover-effect" data-action="details">View Details</button>
-              <a class="btn small ghost" href="#" target="_blank" rel="noopener">GitHub ↗</a>
-            </div>
-          </div>
-        </article>
-
-  <article class="project-card hover-lift" data-aos="fade-up" data-aos-delay="300" data-tech="CARLA,Autoware" data-title="HIL-Based Vehicle Control Simulation Test Bench" data-repo="#" data-video="https://www.youtube.com/embed/aqz-KE-bpKQ" data-description="In-house HIL test bench using CARLA and CAN Bus for throttle, steering and braking simulations. (November–Dec 2024)">
-          <img src="images/projects/thumb1.svg" alt="Autonomous driving test bench" loading="lazy">
-          <div class="project-body">
-            <h4>HIL-Based Vehicle Control Simulation Test Bench</h4>
-            <p>In-house HIL test bench using CARLA and CAN Bus for throttle, steering and braking simulations. (November–Dec 2024)</p>
-            <div class="project-actions">
-              <button class="btn small hover-effect" data-action="details">View Details</button>
-              <a class="btn small ghost" href="#" target="_blank" rel="noopener">GitHub ↗</a>
-            </div>
-          </div>
-        </article>
-
-  <article class="project-card hover-lift" data-aos="fade-up" data-aos-delay="400" data-tech="NVIDIA,Occupancy" data-title="NVIDIA Occupancy Analytics" data-repo="#" data-video="https://www.youtube.com/embed/aqz-KE-bpKQ" data-description="Real-time occupancy tracking using DeepStream, Kafka, PostgreSQL and Grafana for visualization. (Feb 2025)">
-          <img src="images/projects/thumb2.svg" alt="Occupancy analytics" loading="lazy">
-          <div class="project-body">
-            <h4>NVIDIA Occupancy Analytics</h4>
-            <p>Real-time occupancy tracking using DeepStream, Kafka, PostgreSQL and Grafana for visualization. (Feb 2025)</p>
-            <div class="project-actions">
-              <button class="btn small hover-effect" data-action="details">View Details</button>
-              <a class="btn small ghost" href="#" target="_blank" rel="noopener">GitHub ↗</a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Project modal -->
-    <div id="project-modal" class="modal" aria-hidden="true">
-        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-          <button class="modal-close" aria-label="Close">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="m18 6-12 12"/>
-              <path d="m6 6 12 12"/>
-            </svg>
-          </button>
-          <div class="modal-body">
-            <div style="display:flex;gap:1rem;align-items:flex-start;flex-direction:column">
-              <h4 id="modal-title"></h4>
-              <p id="modal-desc"></p>
-            </div>
-
-            <div class="modal-meta" style="display:flex;flex-wrap:wrap;gap:1rem;margin-top:0.75rem">
-              <div><strong>Role:</strong> <span id="modal-role" class="muted"></span></div>
-              <div><strong>Technologies:</strong> <span id="modal-tech" class="muted"></span></div>
-              <div><strong>Outcomes:</strong> <span id="modal-outcomes" class="muted"></span></div>
-            </div>
-
-            <div id="modal-video" class="video-wrap" aria-hidden="true" style="margin-top:1rem"></div>
-
-            <div style="margin-top:1rem;display:flex;gap:1rem;flex-wrap:wrap;">
-              <a id="modal-repo" class="btn small primary" href="#" target="_blank" rel="noopener">View on GitHub ↗</a>
-              <button class="btn small ghost" onclick="document.getElementById('project-modal').setAttribute('aria-hidden', 'true')">← Back to Projects</button>
-            </div>
-          </div>
-        </div>
-    </div>
-
-      <!-- Hackathon Achievements -->
-      <section id="hackathons" class="hackathons container" data-aos="fade-up">
-        <h3>Hackathon Achievements</h3>
-        <div class="hack-grid">
-          <div class="hack-card hover-lift" data-aos="fade-up" data-aos-delay="100">
-            <img src="images/logos/cumta.svg" alt="Cumta logo" class="hack-logo">
-            <div class="hack-body">
-              <h4>Cumta Hackathon</h4>
-              <p class="muted"><strong>Role:</strong> Team Lead — <strong>Achievement:</strong> Participated; <strong>Scope:</strong> Regional embedded-systems challenge.</p>
-              <p>Led a team to build an advanced AI traffic monitoring prototype using computer-vision and real-time analytics to support urban mobility and congestion analysis. Responsible for task allocation, integration, and delivering a working prototype under time constraints.</p>
-            </div>
-          </div>
-
-          <div class="hack-card hover-lift" data-aos="fade-up" data-aos-delay="200">
-            <img src="images/logos/icra.svg" alt="ICRA Robo Racer logo" class="hack-logo">
-            <div class="hack-body">
-              <h4>Robo Racer ICRA Hackathon</h4>
-              <p class="muted"><strong>Role:</strong> Developer — <strong>Achievement:</strong> Finalist; <strong>Scope:</strong> Robotics & autonomous racing.</p>
-              <p>Contributed to perception and control modules for 1:10 autonomous race cars — implementing path‑planning and sensor-based obstacle avoidance that helped the team reach the finals.</p>
-            </div>
-          </div>
-
-          <div class="hack-card hover-lift" data-aos="fade-up" data-aos-delay="300">
-            <img src="images/logos/google-devs.svg" alt="Google Developers logo" class="hack-logo">
-            <div class="hack-body">
-              <h4>Google Solution Challenge 2025 — Finalist</h4>
-              <p class="muted"><strong>Role:</strong> Core Contributor — <strong>Achievement:</strong> Finalist; <strong>Scope:</strong> UN SDG solution using Google technologies.</p>
-              <p>Helped build a solution addressing an UN Sustainable Development Goal using Google Cloud and ML tools to prototype scalable impact-focused features and deployable demos.</p>
-            </div>
-          </div>
-
-          <div class="hack-card hover-lift" data-aos="fade-up" data-aos-delay="400">
-            <img src="images/logos/iisc.svg" alt="IISc logo" class="hack-logo">
-            <div class="hack-body">
-              <h4>IISc Code Bot Hackathon 2025 — Finalist</h4>
-              <p class="muted"><strong>Role:</strong> Developer — <strong>Achievement:</strong> Finalist; <strong>Scope:</strong> AI & automation.</p>
-              <p>Developed an AI automation tool for automatic labeling and forensic search on CCTV video to accelerate security investigations and event retrieval.</p>
-            </div>
-          </div>
-
-          <div class="hack-card hover-lift" data-aos="fade-up" data-aos-delay="500">
-            <img src="images/logos/isro.svg" alt="ISRO logo" class="hack-logo">
-            <div class="hack-body">
-              <h4>ISRO BAH 2025 — 4th place</h4>
-              <p class="muted"><strong>Role:</strong> Team Member — <strong>Achievement:</strong> 4th place in finals; <strong>Focus:</strong> Aerospace / space-applications.</p>
-              <p>Worked on dual-image super-resolution and blind image quality assessment (BIQA) for satellite imagery, contributing to models and evaluation pipelines that earned a top-5 national finish.</p>
-            </div>
-          </div>
-
-          <div class="hack-card">
-            <img src="images/profile/about.svg" alt="Maha Hackathon logo" class="hack-logo">
-            <div class="hack-body">
-              <h4>Bashani Maha Hackathon</h4>
-              <p class="muted"><strong>Role:</strong> Participant — <strong>Achievement:</strong> Participated; <strong>Focus:</strong> Anti‑drone systems.</p>
-              <p>Built a cross-modal sensor-fusion transformer model for an anti‑drone system, integrating multiple sensors to improve detection robustness and reduce false positives in real-world environments.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    <section id="experience" class="experience container" data-aos="fade-up">
-      <h3>Professional Experience</h3>
-      <div class="timeline">
-        <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
-          <div class="time">Present</div>
-          <div class="info">
-            <h4>Computer Vision Engineer Trainee — Karunya Innovation and Design Studio</h4>
-            <p>Building and implementing real-time computer vision projects, integrating embedded sensors and optimizing inference on edge devices.</p>
-          </div>
+    <section id="experience" class="section">
+      <div class="section-inner">
+        <h2>Experience</h2>
+        <div class="timeline">
+          <article class="timeline-item">
+            <h3>Research Intern — Computer Vision &amp; Intelligent Systems</h3>
+            <p class="timeline-meta">ARTPARK @ IISc · Bengaluru · Jan 2026 – Present</p>
+            <p>Built a real-time video analytics platform with Kafka-based streaming, multi-model inference (YOLO, InsightFace, VLMs) optimised via ONNX Runtime and vLLM. Developed an air-gapped AI copilot using a local LLM with RAG over Qdrant and MCP-inspired query routing.</p>
+          </article>
+          <article class="timeline-item">
+            <h3>Computer Vision Engineer Trainee</h3>
+            <p class="timeline-meta">Karunya Innovation and Design Studio (KIDS) · 2024 – Present</p>
+            <p>Developed and deployed 5+ real-time CV systems on edge hardware (Jetson Nano, ZED2i). Led occupancy analytics pipeline serving 10+ live CCTV feeds across campus.</p>
+          </article>
+          <article class="timeline-item">
+            <h3>Chapter Lead — NVIDIA Student Network</h3>
+            <p class="timeline-meta">Karunya Institute · 2024 – Present</p>
+            <p>Established NVIDIA DLI program on campus; trained 30+ students in GPU computing, deep learning, and edge AI on Jetson hardware.</p>
+          </article>
+          <article class="timeline-item">
+            <h3>Student Convener — Institution Innovation Council (IIC)</h3>
+            <p class="timeline-meta">Karunya Institute · 2024 – Present</p>
+          </article>
         </div>
 
-        <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
-          <div class="time">Present</div>
-          <div class="info">
-            <h4>Team Lead — NVIDIA Student Network, Karunya</h4>
-            <p>Leading student initiatives, workshops and projects focused on accelerated computing and video AI on Jetson platforms.</p>
-          </div>
+        <div class="table-wrap">
+          <table class="hack-table">
+            <thead>
+              <tr><th>Achievement</th><th>Role</th><th>Year</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>ISRO BAH 2025 — <strong>4th Place Nationally</strong></td><td>Team Lead</td><td>2025</td></tr>
+              <tr><td>Smart India Hackathon 2025 — <strong>National Finalist</strong> (ISRO Track)</td><td>Team Lead</td><td>2025</td></tr>
+              <tr><td>IISc Code Bot Hackathon — <strong>Finalist</strong></td><td>Developer</td><td>2025</td></tr>
+              <tr><td>Robo Racer ICRA Hackathon — <strong>Finalist</strong></td><td>Developer</td><td>2024</td></tr>
+              <tr><td>CUMTA Hackathon</td><td>Team Lead</td><td>2024</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
 
-    <section id="education" class="education container" data-aos="fade-up">
-      <h3>Education & Certifications</h3>
-      <ul class="edu-list" data-aos="fade-up" data-aos-delay="100">
-        <li><strong>B.Tech (CSE - AI)</strong> — Karunya Institute of Technology and Sciences, Coimbatore. CGPA: 8.77 (2023-2027)</li>
-        <li>Senior Secondary (ISCE) — 86% (2021)</li>
-        <li>Secondary (ISC) — 87% (2023)</li>
-      </ul>
-
-      <h4 data-aos="fade-up" data-aos-delay="200">Certifications</h4>
-      <ul data-aos="fade-up" data-aos-delay="300">
-        <li>NVIDIA: Getting Started with AI on Jetson Nano; Fundamentals of Deep Learning; Building Video AI Applications on Jetson Nano; TAO Toolkit related certs.</li>
-        <li>CISCO: Programming Essentials in C and Python; Cyber Security essentials.</li>
-        <li>IBM: Getting Started with Enterprise Grade AI; Getting Started with Enterprise Data Science.</li>
-      </ul>
-    </section>
-
-    <section id="achievements" class="achievements container" data-aos="fade-up">
-      <h3>Leadership & Extracurricular</h3>
-      <ul data-aos="fade-up" data-aos-delay="100">
-        <li>AI Club (KIDS) — activities and Arduino training instructor (2023–2024)</li>
-        <li>Computer Vision Trainee and NVIDIA Student Network lead — organizing trainings and projects.</li>
-      </ul>
-    </section>
-
-    <section id="contact" class="contact container" data-aos="fade-up">
-      <h3>Contact</h3>
-      <form id="contact-form" novalidate data-aos="fade-up" data-aos-delay="100">
-        <div class="form-row">
-          <input type="text" id="name" name="name" placeholder="Your name" required class="hover-effect">
-          <input type="email" id="email" name="email" placeholder="Your email" required class="hover-effect">
-        </div>
-        <textarea id="message" name="message" rows="6" placeholder="Message" required class="hover-effect"></textarea>
-        <div class="form-row form-actions">
-          <button class="btn primary hover-effect" type="submit">Send Message</button>
-          <a class="btn ghost hover-effect" href="documents/resume.pdf" download>Download Resume</a>
-        </div>
-        <p class="muted">Location: Coimbatore, India — <a href="mailto:ayushr@karunya.edu.in">ayushr@karunya.edu.in</a>
-          <button id="reveal-phone-2" class="btn ghost small" style="margin-left:0.5rem;">Show phone</button>
-        </p>
-      </form>
+    <section id="contact" class="section">
+      <div class="section-inner contact-block">
+        <h2>Contact</h2>
+        <p>Ayush R David · <a href="mailto:ayushr@karunya.edu.in">ayushr@karunya.edu.in</a></p>
+        <p><a href="https://github.com/Ayush-David">github.com/Ayush-David</a> · <a href="https://www.linkedin.com/in/ayush-david">linkedin.com/in/ayush-david</a></p>
+        <p>Open to research collaborations, internships, and full-time roles in computer vision and autonomous systems.</p>
+      </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>© <span id="year"></span> Ayush R David — Computer Vision Engineer.</p>
-    </div>
-  </footer>
-
-  <script src="js/projects.js" defer></script>
   <script src="js/main.js" defer></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="js/animations.js" defer></script>
+  <button id="back-to-top" class="button" aria-label="Back to top" style="display:none;position:fixed;right:1rem;bottom:1rem;">↑</button>
 </body>
 </html>

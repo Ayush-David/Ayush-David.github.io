@@ -1,265 +1,38 @@
-// Enhanced main site interactions with animations
-document.addEventListener('DOMContentLoaded', function() {
-  // Set current year
-  const yearElement = document.getElementById('year');
-  if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = [...document.querySelectorAll('main section[id]')];
+  const navLinks = [...document.querySelectorAll('.site-nav a[href^="#"]')];
+  const linkById = new Map(navLinks.map(link => [link.getAttribute('href').slice(1), link]));
+
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (!visible) return;
+    navLinks.forEach(link => link.classList.remove('active'));
+    const active = linkById.get(visible.target.id);
+    if (active) active.classList.add('active');
+  }, { rootMargin: '-35% 0px -55% 0px', threshold: [0.15, 0.3, 0.6] });
+
+  sections.forEach(section => observer.observe(section));
+  // Initialize UI enhancements
+  try {
+    initScrollAnimations();
+    initProfessionalAnimations();
+    initParallaxScroll();
+    initBackToTop();
+  } catch (e) {
+    // non-fatal
+    console.warn('UI init error', e);
   }
 
-  // Enhanced nav toggle with animation
+  // Hamburger visual toggle for small screens
   const navToggle = document.getElementById('nav-toggle');
-  const siteNav = document.getElementById('site-nav');
-  
-  if (navToggle && siteNav) {
-    navToggle.addEventListener('click', () => {
-      siteNav.classList.toggle('open');
-      navToggle.classList.toggle('active');
-      
-      // Animate hamburger bars
-      const spans = navToggle.querySelectorAll('span');
-      if (navToggle.classList.contains('active')) {
-        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-        spans[1].style.opacity = '0';
-        spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-      } else {
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
-      }
+  const hamburger = document.querySelector('.hamburger');
+  if (navToggle && hamburger) {
+    navToggle.addEventListener('change', () => {
+      if (navToggle.checked) hamburger.classList.add('active');
+      else hamburger.classList.remove('active');
     });
   }
-
-  // Enhanced smooth scroll with easing
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
-      if (href.startsWith('#')) {
-        e.preventDefault();
-        const target = document.querySelector(href);
-        
-        if (target) {
-          // Close mobile menu if open
-          siteNav?.classList.remove('open');
-          navToggle?.classList.remove('active');
-          
-          // Reset hamburger animation
-          const spans = navToggle?.querySelectorAll('span');
-          if (spans) {
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-          }
-          
-          // Smooth scroll with offset for fixed header
-          const headerHeight = document.querySelector('.site-header')?.offsetHeight || 0;
-          const targetPosition = target.offsetTop - headerHeight;
-          
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
-        }
-      }
-    });
-  });
-
-  // Enhanced skill bar animations with intersection observer
-  const skillBars = document.querySelectorAll('.progress');
-  const skillObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const progressBar = entry.target;
-        const level = progressBar.dataset.level || 50;
-        const inner = progressBar.querySelector('span');
-        
-        if (inner) {
-          // Add stagger delay based on position
-          const delay = Array.from(skillBars).indexOf(progressBar) * 200;
-          
-          setTimeout(() => {
-            inner.style.width = level + '%';
-            
-            // Add glow effect
-            inner.style.boxShadow = `0 0 10px var(--accent)`;
-            setTimeout(() => {
-              inner.style.boxShadow = 'none';
-            }, 1000);
-          }, delay);
-        }
-        
-        skillObserver.unobserve(progressBar);
-      }
-    });
-  }, { threshold: 0.5 });
-  
-  skillBars.forEach(bar => skillObserver.observe(bar));
-
-  // Enhanced contact form handling
-  const form = document.getElementById('contact-form');
-  if (form) {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const formData = new FormData(form);
-      const name = formData.get('name')?.trim();
-      const email = formData.get('email')?.trim();
-      const message = formData.get('message')?.trim();
-      
-      // Enhanced validation with visual feedback
-      const inputs = form.querySelectorAll('input, textarea');
-      let isValid = true;
-      
-      inputs.forEach(input => {
-        const value = input.value.trim();
-        input.classList.remove('error', 'success');
-        
-        if (!value) {
-          input.classList.add('error');
-          isValid = false;
-          
-          // Shake animation
-          input.style.animation = 'shake 0.5s ease-in-out';
-          setTimeout(() => {
-            input.style.animation = '';
-          }, 500);
-        } else {
-          input.classList.add('success');
-        }
-      });
-      
-      if (!isValid) {
-        showNotification('Please fill in all fields', 'error');
-        return;
-      }
-      
-      // Email validation
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        const emailInput = form.querySelector('input[type="email"]');
-        emailInput.classList.add('error');
-        showNotification('Please enter a valid email address', 'error');
-        return;
-      }
-      
-      // Success feedback
-      showNotification('Opening email client...', 'success');
-      
-      // Fallback: open user's email client with prefilled content
-      const subject = encodeURIComponent(`Portfolio Contact: ${name}`);
-      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-      window.location.href = `mailto:ayushr@karunya.edu.in?subject=${subject}&body=${body}`;
-      
-      // Reset form with animation
-      setTimeout(() => {
-        form.reset();
-        inputs.forEach(input => {
-          input.classList.remove('error', 'success');
-        });
-      }, 1000);
-    });
-    
-    // Real-time validation feedback
-    const inputs = form.querySelectorAll('input, textarea');
-    inputs.forEach(input => {
-      input.addEventListener('blur', function() {
-        this.classList.remove('error', 'success');
-        
-        if (this.value.trim()) {
-          this.classList.add('success');
-        }
-      });
-      
-      input.addEventListener('focus', function() {
-        this.classList.remove('error');
-      });
-    });
-  }
-
-  // Phone reveal functionality with animation
-  const phoneButtons = document.querySelectorAll('#reveal-phone, #reveal-phone-2');
-  phoneButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      const phoneMask = document.getElementById('phone-mask');
-      const phoneNumber = phoneMask.dataset.phone;
-      
-      if (phoneNumber) {
-        // Animate reveal
-        phoneMask.style.transition = 'all 0.3s ease';
-        phoneMask.style.opacity = '0';
-        
-        setTimeout(() => {
-          phoneMask.textContent = phoneNumber;
-          phoneMask.style.opacity = '1';
-          
-          // Hide button with fade
-          this.style.transition = 'all 0.3s ease';
-          this.style.opacity = '0';
-          setTimeout(() => {
-            this.style.display = 'none';
-          }, 300);
-        }, 300);
-      } else {
-        showNotification('Phone number not configured', 'info');
-      }
-    });
-  });
-
-  // Enhanced scroll animations
-  initScrollAnimations();
-  
-  // Initialize parallax scroll effects
-  initParallaxScroll();
-  
-  // Professional subtitle animation
-  initProfessionalAnimations();
-  
-  // Back to top button
-  initBackToTop();
 });
-
-// Notification system
-function showNotification(message, type = 'info') {
-  const notification = document.createElement('div');
-  notification.className = `notification notification-${type}`;
-  notification.innerHTML = `
-    <span>${message}</span>
-    <button onclick="this.parentElement.remove()">&times;</button>
-  `;
-  
-  notification.style.cssText = `
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: var(--card);
-    color: var(--text);
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px var(--shadow);
-    border-left: 4px solid var(--accent);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    max-width: 300px;
-    animation: slideIn 0.3s ease;
-  `;
-  
-  if (type === 'error') {
-    notification.style.borderLeftColor = '#ef4444';
-  } else if (type === 'success') {
-    notification.style.borderLeftColor = '#10b981';
-  }
-  
-  document.body.appendChild(notification);
-  
-  // Auto remove after 5 seconds
-  setTimeout(() => {
-    notification.style.animation = 'slideOut 0.3s ease';
-    setTimeout(() => {
-      notification.remove();
-    }, 300);
-  }, 5000);
-}
 
 // Enhanced scroll animations
 function initScrollAnimations() {
@@ -329,9 +102,9 @@ function initBackToTop() {
   // Show/hide button based on scroll position
   window.addEventListener('scroll', () => {
     if (window.pageYOffset > 300) {
-      backToTopBtn.classList.add('visible');
+      backToTopBtn.style.display = 'inline-flex';
     } else {
-      backToTopBtn.classList.remove('visible');
+      backToTopBtn.style.display = 'none';
     }
   });
   
