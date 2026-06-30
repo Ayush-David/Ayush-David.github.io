@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A Data-Driven Intelligence Layer for Industry 5.0 Manufacturing — Ayush R David</title>
+  <meta name="description"
+    content="Technical report: microservice intelligence layer for Industry 5.0 manufacturing combining multi-camera video analytics, process telemetry, and an AI Copilot. ARTPARK @ IISc.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fafafa;
+      --surface: #ffffff;
+      --ink: #18181b;
+      --ink-soft: #52525b;
+      --ink-faint: #a1a1aa;
+      --border: rgba(0, 0, 0, 0.12);
+      --border-soft: rgba(0, 0, 0, 0.08);
+      --green-bg: #e8f5ee;
+      --green-fg: #1a7f4e;
+      --blue-bg: #e9f1fc;
+      --blue-fg: #1d5fad;
+      --accent: #18181b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .page {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 64px 32px 48px;
+      background: var(--surface);
+      min-height: 100vh;
+    }
+
+    /* ---------- Header ---------- */
+
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 10px;
+    }
+
+    .eyebrow .sep {
+      margin: 0 7px;
+      color: var(--ink-faint);
+    }
+
+    h1.title {
+      font-size: clamp(1.5rem, 4vw, 1.75rem);
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 14px;
+      margin-bottom: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--ink-faint);
+    }
+
+    .meta-row .dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--ink-faint);
+      flex-shrink: 0;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 100px;
+      letter-spacing: 0.01em;
+      border: 0.5px solid var(--border-soft);
+    }
+
+    .badge.green {
+      background: var(--green-bg);
+      color: var(--green-fg);
+    }
+
+    .badge.blue {
+      background: var(--blue-bg);
+      color: var(--blue-fg);
+    }
+
+    .hr {
+      border: none;
+      border-top: 0.5px solid var(--border-soft);
+      margin: 24px 0;
+    }
+
+    /* ---------- Sections ---------- */
+
+    .section {
+      margin-bottom: 28px;
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 0.5px;
+      background: var(--border-soft);
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      line-height: 1.65;
+      margin-bottom: 12px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    p strong,
+    li strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .lede {
+      font-size: 1.05rem;
+      color: var(--ink);
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    /* ---------- Architecture list ---------- */
+
+    .arch-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .arch-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .arch-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      width: 18px;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .arch-body {
+      flex: 1;
+    }
+
+    .arch-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+
+    .arch-desc {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+
+    /* ---------- Storage table ---------- */
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+    }
+
+    th {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-faint);
+      text-align: left;
+      padding: 0 12px 8px 0;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    td {
+      font-size: 0.875rem;
+      color: var(--ink-soft);
+      padding: 10px 12px 10px 0;
+      border-bottom: 0.5px solid var(--border-soft);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    td:first-child {
+      font-weight: 600;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ---------- Stat grid ---------- */
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 0.5px solid var(--border);
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+
+    .stat-cell {
+      background: var(--surface);
+      padding: 18px 20px;
+      border-right: 0.5px solid var(--border-soft);
+      border-bottom: 0.5px solid var(--border-soft);
+    }
+
+    .stat-cell:nth-child(2n) {
+      border-right: none;
+    }
+
+    .stat-cell:nth-child(3),
+    .stat-cell:nth-child(4) {
+      border-bottom: none;
+    }
+
+    .stat-num {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-num .unit {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      line-height: 1.45;
+    }
+
+    /* ---------- References ---------- */
+
+    .refs {
+      font-size: 0.82rem;
+      color: var(--ink-faint);
+      line-height: 1.65;
+    }
+
+    .refs .ref-item {
+      margin-bottom: 4px;
+    }
+
+    /* ---------- Footer ---------- */
+
+    .footer {
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 0.5px solid var(--border-soft);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ink-faint);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* ---------- Responsive ---------- */
+
+    @media (max-width: 600px) {
+      .page {
+        padding: 40px 20px 32px;
+      }
+
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-cell {
+        border-right: none;
+      }
+
+      .stat-cell:nth-child(3) {
+        border-bottom: 0.5px solid var(--border-soft);
+      }
+
+      .arch-item {
+        gap: 10px;
+      }
+
+      .footer {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .meta-row {
+        gap: 8px;
+      }
+
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+
+    /* ---------- Print ---------- */
+
+    @media print {
+      .page {
+        max-width: none;
+        padding: 18mm 19mm 16mm 19mm;
+        min-height: auto;
+      }
+
+      table,
+      .stat-grid,
+      .no-break {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <div class="eyebrow">ARTPARK <span class="sep">·</span> Indian Institute of Science, Bengaluru</div>
+    <h1 class="title">A Data-Driven Intelligence Layer for Human-Centric Industry 5.0 Manufacturing</h1>
+
+    <div class="meta-row">
+      <span>Ayush David</span>
+      <span class="dot"></span>
+      <span>Feb&nbsp;&ndash;&nbsp;Apr 2025</span>
+      <span class="dot"></span>
+      <span>Bengaluru, India</span>
+      <span class="dot"></span>
+      <span>Research Internship</span>
+    </div>
+
+    <div class="badges">
+      <span class="badge green">Computer Vision</span>
+      <span class="badge green">Multi-Engine Inference</span>
+      <span class="badge blue">Kafka</span>
+      <span class="badge blue">Microservices</span>
+      <span class="badge blue">RAG / LLM Orchestration</span>
+      <span class="badge green">Time-Series Analytics</span>
+      <span class="badge blue">Docker</span>
+    </div>
+
+    <hr class="hr" style="margin-top:0;">
+
+    <div class="section">
+      <p class="lede">A microservice intelligence layer for electronics manufacturing plants, combining live
+        multi-camera video analytics with a manufacturing process analytics workbench and a natural-language AI Copilot
+        &mdash; deployed and validated on campus infrastructure at IISc ARTPARK.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-label">The Problem</div>
+      <p>Modern manufacturing lines generate enormous volumes of machine telemetry &mdash; SPI inspection coordinates,
+        reflow zone temperatures, pick-and-place placement logs &mdash; but most of it is siloed in proprietary
+        controllers or exported to flat CSVs and never correlated across stages. Floor supervisors make quality and
+        downtime decisions on end-of-shift review rather than live evidence, and there's no system that watches camera
+        feeds for safety/quality events <em>and</em> machine telemetry for process drift <em>and</em> surfaces both to
+        an operator in a form they can actually query.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Architecture</div>
+      <ul class="arch-list">
+        <li class="arch-item">
+          <span class="arch-num">01</span>
+          <div class="arch-body">
+            <div class="arch-name">Data ingestion</div>
+            <div class="arch-desc">RTSP camera streams converted to MJPEG/WebRTC; a camera registry service (SQLite,
+              CSV/Excel bulk import) handles metadata and credentials. SPI, Reflow, and P&amp;P production datasets
+              ingested through format-specific parsers and merged into a unified analytical dataset.</div>
+          </div>
+        </li>
+        <li class="arch-item">
+          <span class="arch-num">02</span>
+          <div class="arch-body">
+            <div class="arch-name">Stream processing &amp; inference</div>
+            <div class="arch-desc">A plug-and-play scene-understanding service runs four concurrent engine types &mdash;
+              YOLO object/person detection (ONNX Runtime), InsightFace recognition, a VLM for scene description, and
+              action recognition &mdash; each defined by a manifest, addable without touching core orchestration. A
+              scene-change filter with burst buffering forwards only frames with meaningful change.</div>
+          </div>
+        </li>
+        <li class="arch-item">
+          <span class="arch-num">03</span>
+          <div class="arch-body">
+            <div class="arch-name">Storage</div>
+            <div class="arch-desc">Four stores, one per data shape &mdash; below.</div>
+          </div>
+        </li>
+        <li class="arch-item">
+          <span class="arch-num">04</span>
+          <div class="arch-body">
+            <div class="arch-name">AI query &amp; alerting</div>
+            <div class="arch-desc">An MCP-pattern query service routes operator questions to TimescaleDB retrieval,
+              Qdrant semantic search, or live scene analysis, then synthesizes an answer via a multi-provider LLM
+              backend (OpenAI / Google / local Ollama). The alert service parses plain-language alert definitions into
+              structured conditions + embeddings, then matches them against live Kafka events in real time.</div>
+          </div>
+        </li>
+        <li class="arch-item">
+          <span class="arch-num">05</span>
+          <div class="arch-body">
+            <div class="arch-name">Operator interface</div>
+            <div class="arch-desc">A FastAPI + Jinja2 dashboard for camera management, event browsing, alerts, and
+              reports, plus a chat-first Factory Copilot that maps free-text operator intent to specific dashboard
+              widgets and deep links.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section no-break">
+      <div class="section-label">Storage Layer</div>
+      <table>
+        <tr>
+          <th>Store</th>
+          <th>Technology</th>
+          <th>Used for</th>
+        </tr>
+        <tr>
+          <td>Time-series</td>
+          <td>TimescaleDB</td>
+          <td>Detection history, process telemetry, structured query context</td>
+        </tr>
+        <tr>
+          <td>Vectors</td>
+          <td>Qdrant</td>
+          <td>Semantic alert matching, RAG retrieval for the Copilot</td>
+        </tr>
+        <tr>
+          <td>Metadata</td>
+          <td>SQLite</td>
+          <td>Camera registry, accounts, sessions</td>
+        </tr>
+        <tr>
+          <td>Media</td>
+          <td>MinIO</td>
+          <td>Alert evidence frames, report image assets</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Results</div>
+      <div class="stat-grid">
+        <div class="stat-cell">
+          <div class="stat-num">60&ndash;70<span class="unit">%</span></div>
+          <div class="stat-label">reduction in redundant frame forwarding from the scene-change filter, with no missed
+            detection events</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">&lt;400<span class="unit">ms</span></div>
+          <div class="stat-label">average end-to-end latency from event generation to alert trigger, across 10 test
+            scenarios</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">3.4<span class="unit">&times;</span></div>
+          <div class="stat-label">higher defect rate when SPI paste-volume readings fell in the lower quartile &mdash; a
+            cross-stage correlation invisible to siloed per-machine data</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">23<span class="unit">%</span></div>
+          <div class="stat-label">higher mean cycle time at the Reflow station vs. SPI/P&amp;P &mdash; identified as the
+            line's primary throughput bottleneck</div>
+        </div>
+      </div>
+      <p>The platform deployed cleanly under Docker Compose with health-checked, independently restartable services; a
+        watchdog confirmed automatic recovery from induced failures. The harder problem wasn't any single engine &mdash;
+        it was latency discipline across the full pipeline (capture &rarr; inference &rarr; Kafka &rarr; DB write &rarr;
+        WebSocket push) and keeping the Copilot's Qdrant-retrieved context fresh enough that answers didn't quietly go
+        stale. Both were solved with tuned producer/consumer and burst-buffer parameters, and a faster embedding-refresh
+        cycle with a staleness indicator on Copilot responses.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-label">What I'd Build Next</div>
+      <p>Move the manufacturing analytics path from batch CSV ingestion to real-time streaming, so process analytics
+        runs at the same latency tier as video. Add multi-turn memory to the Copilot so operators can refine a query
+        across a session. And the real test: deploy at an active production facility, not a campus testbed, to see if
+        the architecture holds under real data diversity and load.</p>
+    </div>
+
+    <div class="refs">
+      <div class="ref-item">Redmon, J. &amp; Farhadi, A. (2018). YOLOv3: An Incremental Improvement.
+        <em>arXiv:1804.02767</em>.</div>
+      <div class="ref-item">Anthropic (2024). Model Context Protocol Specification.</div>
+      <div class="ref-item">Jensen, K., Nielsen, P., &amp; Larsen, A. (2021). Anomaly Detection in Reflow Soldering
+        Processes Using Time-Series ML. <em>Journal of Manufacturing Systems</em>, 58, 164&ndash;174.</div>
+    </div>
+
+    <div class="footer">
+      <span>Ayush David &middot; IISc ARTPARK Internship</span>
+      <span>ayush-david.github.io</span>
+    </div>
+
+  </div>
+</body>
+
+</html>
